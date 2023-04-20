@@ -1,0 +1,4 @@
+run = "g++ src/main.cpp && ./a.out"
+
+[nix]
+channel = "stable-22_11"
