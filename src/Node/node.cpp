@@ -3,18 +3,21 @@
 using namespace NodeClass;
 
 Node::Node() {
-    this->valorDoNo = 0;
-    this->proximoElemento = -1;
+    this->valorDoNode = 0;
+    this->proximoNode = -1;
+    this->estaOcupado = false;
 }
 
-Node::Node(int valorDoNo) {
-    this->valorDoNo = valorDoNo;
-    this->proximoElemento = -1;
+Node::Node(int valorDoNode) {
+    this->valorDoNode = valorDoNode;
+    this->proximoNode = -1;
+    this->estaOcupado = true;
 }
 
-Node::Node(int valorDoNo, int proximoElemento) {
-    this->valorDoNo = valorDoNo;
-    this->proximoElemento = proximoElemento;
+Node::Node(int valorDoNode, int proximoNode) {
+    this->valorDoNode = valorDoNode;
+    this->proximoNode = proximoNode;
+    this->estaOcupado = true;
 }
 
 Node::~Node() {
@@ -22,9 +25,26 @@ Node::~Node() {
 }
 
 int Node::getValorDoNode() {
-    return this->valorDoNo;
+    return this->valorDoNode;
 }
 
 void Node::setValorDoNode(int valorDoNo) {
-    this->valorDoNo = valorDoNo;
+    this->valorDoNode = valorDoNo;
 }
+
+int Node::getProximoNode() {
+    return this->valorDoNode;
+}
+
+void Node::setProximoNode(int valorDoNode) {
+    this->valorDoNode = valorDoNode;
+}
+
+bool Node::isEstaOcupado() {
+    return this->estaOcupado;
+}
+
+void Node::setEstaOcupado(bool estaOcupado) {
+    this->estaOcupado = estaOcupado;
+}
+

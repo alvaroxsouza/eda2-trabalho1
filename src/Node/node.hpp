@@ -6,15 +6,20 @@ namespace NodeClass {
     class Node
     {
     private:
-        int valorDoNo;
-        int proximoElemento;
+        int valorDoNode;
+        int proximoNode;
+        bool estaOcupado;
 
     public:
         Node();
         Node(int valorDoNo);
-        Node(int valorDoNo, int proximoElemento);
+        Node(int valorDoNo, int proximoNode);
         int getValorDoNode();
-        void setValorDoNode(int valorDoNo);
+        void setValorDoNode(int valorDoNode);
+        int getProximoNode();
+        void setProximoNode(int valorDoNode);
+        bool isEstaOcupado();
+        void setEstaOcupado(bool estaOcupado);
 
         ~Node();
     };
