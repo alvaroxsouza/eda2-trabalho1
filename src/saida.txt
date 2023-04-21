@@ -1,0 +1,13 @@
+Posicao 0: 11 Ponteiro 0: -1
+Posicao 1: 0 Ponteiro 1: -1
+Posicao 2: 13 Ponteiro 2: -1
+Posicao 3: 0 Ponteiro 3: -1
+Posicao 4: 0 Ponteiro 4: -1
+Posicao 5: 16 Ponteiro 5: 10
+Posicao 6: 27 Ponteiro 6: -1
+Posicao 7: 31 Ponteiro 7: 6
+Posicao 8: 19 Ponteiro 8: -1
+Posicao 9: 10 Ponteiro 9: 7
+Posicao 10: 38 Ponteiro 10: 9
+Quantidade de acessos: 15
+Media de acessos: 1.9
