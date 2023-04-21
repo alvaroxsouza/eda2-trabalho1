@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+
 #include "Node/node.hpp"
 #include "Hash/hashEncadeamentoExplicito.hpp"
 
@@ -23,26 +25,15 @@ Node* inicializaArquivo(int tamanhoDaTabela) {
     for(int i = 0; i < tamanhoDaTabela; i++) {
         Node* node = new Node();
         arquivo[i] = *node;
-
-        // for(int i = 0; i < tamanhoDaTabela; i++) {
-        //     cout << arquivo[i].getValorDoNode() << endl;
-        //     cout << arquivo[i].getProximoNode() << endl;
-        //     cout << arquivo[i].isEstaOcupado() << endl;
-        // }
     }
     return arquivo;
 }
 
 int main() {
-    // for(int i = 0; i < 100; i++) {
-    //     int posicaoAtual = i % (11);
-
-    //     cout << i << " " << posicaoAtual << endl;
-    // }
-
     int tamanhoDaTabela = entradaTamanhoDaTabela();
-
     int posicaoPonteiroControle = tamanhoDaTabela - 1;
+
+    int quantidadeDeAcessosTotalHEEAE = 0;
 
     Node *arquivo = inicializaArquivo(tamanhoDaTabela);
 
@@ -51,11 +42,17 @@ int main() {
     for(int i = 0; i < qtdEntrada; i++) {
         int valorNewNode;
         cin >> valorNewNode;
-        HashEncadeamentoExplicito::insercaoNode(arquivo, valorNewNode, tamanhoDaTabela, &posicaoPonteiroControle);
+        HashEncadeamentoExplicito::insercaoNode(arquivo, valorNewNode, tamanhoDaTabela, posicaoPonteiroControle, quantidadeDeAcessosTotalHEEAE);
     }
     
     for(int i = 0; i < tamanhoDaTabela; i++) {
         cout << "Posicao " << i << ": " << arquivo[i].getValorDoNode()
             << " Ponteiro " << i << ": " << arquivo[i].getProximoNode() << endl;
     }
+
+    double mediaDeAcessos = double(quantidadeDeAcessosTotalHEEAE) / qtdEntrada;
+
+    cout << "Quantidade de acessos: " << quantidadeDeAcessosTotalHEEAE << endl;
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessos << endl;
+
 }
