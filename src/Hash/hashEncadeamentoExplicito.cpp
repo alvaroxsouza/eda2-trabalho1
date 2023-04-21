@@ -6,7 +6,7 @@ int funcaoHashingPosicao(int valorDoNode, int tamanhoDoArquivo) {
     return valorDoNode % tamanhoDoArquivo;
 }
 
-int buscaPosicao(Node* arquivo, Node* newNode, int tamanhoDoArquivo) {
+int buscaPosicaoInicial(Node* arquivo, Node* newNode, int tamanhoDoArquivo) {
     int posicao = -1;
     int posicaoInicial = funcaoHashingPosicao(newNode->getValorDoNode(), tamanhoDoArquivo);
     return posicao;
@@ -14,7 +14,7 @@ int buscaPosicao(Node* arquivo, Node* newNode, int tamanhoDoArquivo) {
 
 void insercaoNode(Node* arquivo, Node* newNode, int tamanhoDoArquivo, int posicaoControle) {
 
-    int posicaoDeInsercaoNoArquivo = buscaPosicao(arquivo, newNode, tamanhoDoArquivo);
+    int posicaoDeInsercaoNoArquivo = buscaPosicaoInicial(arquivo, newNode, tamanhoDoArquivo);
 
     if(!arquivo[posicaoDeInsercaoNoArquivo].isEstaOcupado()) {
         arquivo[posicaoDeInsercaoNoArquivo].setValorDoNode(newNode->getValorDoNode());
