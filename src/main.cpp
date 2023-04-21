@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Node/node.hpp"
+#include "Hash/hashEncadeamentoExplicito.hpp"
 
 using namespace std;
 using namespace NodeClass;
+using namespace HashEncadeamentoExplicitoClass;
 
 int entradaTamanhoDaTabela() {
     int tamanhoDaTabela = 0;
@@ -11,19 +13,22 @@ int entradaTamanhoDaTabela() {
 }
 
 int entradaDosValoresDosNosDaEstrutura() {
-    int valorDoNo;
-    cin >> valorDoNo;
-    return valorDoNo;
+    int valorDoNode;
+    cin >> valorDoNode;
+    return valorDoNode;
 }
 
 Node* inicializaArquivo(int tamanhoDaTabela) {
     Node* arquivo = new Node[tamanhoDaTabela];
     for(int i = 0; i < tamanhoDaTabela; i++) {
-        int valorDoNo = entradaDosValoresDosNosDaEstrutura();
         Node* node = new Node();
-        node->setValorDoNode(valorDoNo);
         arquivo[i] = *node;
-        // delete node;
+
+        // for(int i = 0; i < tamanhoDaTabela; i++) {
+        //     cout << arquivo[i].getValorDoNode() << endl;
+        //     cout << arquivo[i].getProximoNode() << endl;
+        //     cout << arquivo[i].isEstaOcupado() << endl;
+        // }
     }
     return arquivo;
 }
@@ -37,9 +42,20 @@ int main() {
 
     int tamanhoDaTabela = entradaTamanhoDaTabela();
 
+    int posicaoPonteiroControle = tamanhoDaTabela - 1;
+
     Node *arquivo = inicializaArquivo(tamanhoDaTabela);
+
+    int qtdEntrada = entradaTamanhoDaTabela();
+
+    for(int i = 0; i < qtdEntrada; i++) {
+        int valorNewNode;
+        cin >> valorNewNode;
+        HashEncadeamentoExplicito::insercaoNode(arquivo, valorNewNode, tamanhoDaTabela, &posicaoPonteiroControle);
+    }
     
     for(int i = 0; i < tamanhoDaTabela; i++) {
-        cout << arquivo[i].getValorDoNode() << endl;
+        cout << "Posicao " << i << ": " << arquivo[i].getValorDoNode()
+            << " Ponteiro " << i << ": " << arquivo[i].getProximoNode() << endl;
     }
 }

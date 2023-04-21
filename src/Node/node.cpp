@@ -1,3 +1,6 @@
+#ifndef NODE_CPP
+#define NODE_CPP
+
 #include "node.hpp"
 
 using namespace NodeClass;
@@ -28,16 +31,16 @@ int Node::getValorDoNode() {
     return this->valorDoNode;
 }
 
-void Node::setValorDoNode(int valorDoNo) {
-    this->valorDoNode = valorDoNo;
+void Node::setValorDoNode(int valorDoNode) {
+    this->valorDoNode = valorDoNode;
 }
 
 int Node::getProximoNode() {
-    return this->valorDoNode;
+    return this->proximoNode;
 }
 
-void Node::setProximoNode(int valorDoNode) {
-    this->valorDoNode = valorDoNode;
+void Node::setProximoNode(int proximoNode) {
+    this->proximoNode = proximoNode;
 }
 
 bool Node::isEstaOcupado() {
@@ -48,3 +51,4 @@ void Node::setEstaOcupado(bool estaOcupado) {
     this->estaOcupado = estaOcupado;
 }
 
+#endif
