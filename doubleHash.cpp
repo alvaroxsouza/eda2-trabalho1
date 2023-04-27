@@ -35,7 +35,6 @@ vector<int> criar_tabela_hash(int quantidade_de_registros){
 void insere(vector<int>& tabela_hash, int quantidade_de_registros, int& total_chaves_inseridas, int& total_acessos) {
     int chave; 
     while(total_chaves_inseridas < quantidade_de_registros) { // se o total de chaves alcançar o número de registros disponíveis encerra o loop
-        cout << "valor da chave: ";
         cin >> chave;
 
         if(chave == 0) break; //se chave for 0, saia do loop
@@ -45,7 +44,6 @@ void insere(vector<int>& tabela_hash, int quantidade_de_registros, int& total_ch
 
         if (tabela_hash[h1] == -1) { // caso em que, usando h1, a posição calculada está disponível
             tabela_hash[h1] = chave; // chave inserida 
-            //cout << "Chave " << chave << " inserida na posicao " << h1 << endl;
             total_chaves_inseridas++; // incrementa o total de chaves inseridas
             total_acessos++; // incrementa o total de acessos
         } 
@@ -64,14 +62,15 @@ void insere(vector<int>& tabela_hash, int quantidade_de_registros, int& total_ch
             }
 
             tabela_hash[nova_posicao] = chave; // chave inserida
-            //cout << "Chave " << chave << " inserida na posicao " << nova_posicao << endl;
             total_chaves_inseridas++; // incrementa o total de chaves inseridas
             total_acessos++; // incrementa o total de acessos
         }
     }
 }
 
-// Função para cálculo da média de acessos realizados para a inserção de um dado bloco de chaves
+/*Função para cálculo da média de acessos realizados para a inserção de um dado bloco de chaves
+A média de acessos é dada pela divisão entre o total de acessos realizados, para a inserção de todas as chaves, e o 
+número de chaves inseridas*/
 double calcula_media_acessos(int total_acessos, int total_chaves_inseridas) {
     if(total_chaves_inseridas == 0) return 0;
     return (double) total_acessos / total_chaves_inseridas;
@@ -96,16 +95,21 @@ void saida(vector<int>& tabela_hash, int quantidade_de_registros, int total_aces
     cout << "Media de acessos: " << media_acessos << endl;
 }
 
+/* Entrada:
+1ª linha: número de registros
+Linhas seguintes: valor das chaves a serem inseridas
+
+- A inserção para ao digitar o valor 0 (zero)
+*/
 
 int main() {
     int quantidade_de_registros = 0, total_chaves_inseridas = 0, total_acessos = 0;
     
-    cout << "Numero de registros: ";
     cin >> quantidade_de_registros;
     
-    vector<int> tabela_hash = criar_tabela_hash(quantidade_de_registros);
+    vector<int> tabela_hash = criar_tabela_hash(quantidade_de_registros); // chama a função para criar a tabela hash
 
-    insere(tabela_hash, quantidade_de_registros, total_chaves_inseridas, total_acessos); // chama função para inserção
+    insere(tabela_hash, quantidade_de_registros, total_chaves_inseridas, total_acessos); // chama função para inserção das chaves
 
     // abrir um arquivo de texto para escrever as saídas
     ofstream arquivo_saida("saida.txt");
@@ -114,7 +118,7 @@ int main() {
     streambuf* backup = cout.rdbuf();
     cout.rdbuf(arquivo_saida.rdbuf());
 
-    saida(tabela_hash, quantidade_de_registros, total_acessos, total_chaves_inseridas);
+    saida(tabela_hash, quantidade_de_registros, total_acessos, total_chaves_inseridas); // chama função para produzir a saída
     
     return 0;
 }
