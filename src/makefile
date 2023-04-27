@@ -16,5 +16,8 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	rm -rf $(OBJECTS) $(EXECUTABLE)
 
+run-valgrind:
+	valgrind --leak-check=full ./$(EXECUTABLE) <entrada.txt >saida.txt
+
 run:
 	./$(EXECUTABLE) <entrada.txt >saida.txt

@@ -23,9 +23,7 @@ Node::Node(int valorDoNode, int proximoNode) {
     this->estaOcupado = true;
 }
 
-Node::~Node() {
-    delete this;
-}
+Node::~Node() {}
 
 int Node::getValorDoNode() {
     return this->valorDoNode;

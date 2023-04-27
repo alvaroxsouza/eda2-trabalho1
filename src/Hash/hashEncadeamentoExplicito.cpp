@@ -5,49 +5,66 @@
 
 using namespace HashEncadeamentoExplicitoClass;
 
-int funcaoHashingPosicao(int valorDoNode, int tamanhoDoArquivo) {
+int funcaoHashingPosicao(int valorDoNode, int tamanhoDoArquivo)
+{
     return valorDoNode % tamanhoDoArquivo;
 }
 
-int buscaPosicaoInicial(Node* arquivo, int valorNovoNode, int tamanhoDoArquivo) {
+int buscaPosicaoInicial(Node *arquivo, int valorNovoNode, int tamanhoDoArquivo)
+{
     int posicaoInicial = funcaoHashingPosicao(valorNovoNode, tamanhoDoArquivo);
     return posicaoInicial;
 }
 
-void HashEncadeamentoExplicito::insercaoNode(Node* arquivo, int valorNovoNode,
-    int tamanhoDoArquivo, int &posicaoControle, int &quantidadeDeAcessosTotalHEEAE) {
+/* 
+* Encontra o ultimo nó da lista encadeada de forma a apontar para o próximo nó
+*/
+int encontrarUltimoNoLivreNaListaEncadeada(Node* arquivo, int& posicaoControle,
+    int& quantidadeDeAcessosTotalHEEAE, int posicaoInicialDeInsercaoNoArquivo) {
 
-    int posicaoDeInsercaoNoArquivo 
-        = buscaPosicaoInicial(arquivo, valorNovoNode, tamanhoDoArquivo);
-
-    if(!arquivo[posicaoDeInsercaoNoArquivo].isEstaOcupado()) {
+    int posicaoAtualNaLista = posicaoInicialDeInsercaoNoArquivo;
+    while (arquivo[posicaoAtualNaLista].getProximoNode() != -1) {
+        posicaoAtualNaLista = arquivo[posicaoAtualNaLista].getProximoNode();
         quantidadeDeAcessosTotalHEEAE++;
-        arquivo[posicaoDeInsercaoNoArquivo].setValorDoNode(valorNovoNode);
-        arquivo[posicaoDeInsercaoNoArquivo].setEstaOcupado(true);
-    } else {
-        int posicaoAtualNaLista = posicaoDeInsercaoNoArquivo;
+    }
+    return posicaoAtualNaLista;
+}
 
-        // Verificar na posicao atual da lista se o próximo nó está livre, para colocar a
-        // posicao do novo nó para ligar a lista com o nó que está sendo inserido
-        while(arquivo[posicaoAtualNaLista].getProximoNode() != -1) {
-            posicaoAtualNaLista = arquivo[posicaoAtualNaLista].getProximoNode();
+/* 
+* Encontra o primeiro nó livre no arquivo, de cima para baixo, verificando se a posição está ocupada
+* para guardar a posição que deve marcar o próxima posição que será inserida caso haja colisão
+*/
+void encontrarPrimeiroNodeLivre(Node* arquivo, int& posicaoControle, int& quantidadeDeAcessosTotalHEEAE) {
+    while (posicaoControle >= 0 && arquivo[posicaoControle].isEstaOcupado()) {
+        posicaoControle--;
+        quantidadeDeAcessosTotalHEEAE++;
+    }
+}
+
+void HashEncadeamentoExplicito::insercaoNode(Node* arquivo, int valorNovoNode,
+                                              int tamanhoDoArquivo,
+                                              int& posicaoControle,
+                                              int& quantidadeDeAcessosTotalHEEAE) {
+    int posicaoInicialDeInsercaoNoArquivo = buscaPosicaoInicial(arquivo, valorNovoNode, tamanhoDoArquivo);
+
+    if (!arquivo[posicaoInicialDeInsercaoNoArquivo].isEstaOcupado())
+    {
+        quantidadeDeAcessosTotalHEEAE++;
+        arquivo[posicaoInicialDeInsercaoNoArquivo].setValorDoNode(valorNovoNode);
+        arquivo[posicaoInicialDeInsercaoNoArquivo].setEstaOcupado(true);
+    } else {
+        int posicaoAtualNaLista = encontrarUltimoNoLivreNaListaEncadeada(arquivo, posicaoControle,
+                                quantidadeDeAcessosTotalHEEAE, posicaoInicialDeInsercaoNoArquivo);
+    
+        encontrarPrimeiroNodeLivre(arquivo, posicaoControle, quantidadeDeAcessosTotalHEEAE);
+
+        if (posicaoControle >= 0) {
+            arquivo[posicaoAtualNaLista].setProximoNode(posicaoControle);
+            arquivo[posicaoControle].setValorDoNode(valorNovoNode);
+            arquivo[posicaoControle].setEstaOcupado(true);
             quantidadeDeAcessosTotalHEEAE++;
         }
-
-        while (posicaoControle >= 0) {
-            if(arquivo[posicaoControle].isEstaOcupado()) {
-                quantidadeDeAcessosTotalHEEAE++;
-                posicaoControle -= 1;
-            } else {
-                arquivo[posicaoAtualNaLista].setProximoNode(posicaoControle);
-                arquivo[posicaoControle].setValorDoNode(valorNovoNode);
-                arquivo[posicaoControle].setEstaOcupado(true);
-                quantidadeDeAcessosTotalHEEAE++;
-                return;
-            }
-        }
     }
-
 }
 
 #endif

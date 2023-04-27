@@ -23,10 +23,16 @@ int entradaDosValoresDosNosDaEstrutura() {
 Node* inicializaArquivo(int tamanhoDaTabela) {
     Node* arquivo = new Node[tamanhoDaTabela];
     for(int i = 0; i < tamanhoDaTabela; i++) {
-        Node* node = new Node();
-        arquivo[i] = *node;
+        new (&arquivo[i]) Node();
     }
     return arquivo;
+}
+
+void liberaArquivo(Node* arquivo, int tamanhoDaTabela) {
+    for(int i = 0; i < tamanhoDaTabela; i++) {
+        arquivo[i].~Node();
+    }
+    delete[] arquivo;
 }
 
 int main() {
@@ -37,7 +43,7 @@ int main() {
 
     Node *arquivo = inicializaArquivo(tamanhoDaTabela);
 
-    int qtdEntrada = entradaTamanhoDaTabela();
+    int qtdEntrada = entradaDosValoresDosNosDaEstrutura();
 
     for(int i = 0; i < qtdEntrada; i++) {
         int valorNewNode;
@@ -54,5 +60,7 @@ int main() {
 
     cout << "Quantidade de acessos: " << quantidadeDeAcessosTotalHEEAE << endl;
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessos << endl;
+
+    liberaArquivo(arquivo, tamanhoDaTabela);
 
 }
