@@ -13,9 +13,14 @@ namespace HashPerfectClass {
         private:
         /* data */
         public:
-            static void insertPerfectHash(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois,
-                int chave, int quantidade_de_registros, int a, int b, int& total_acessos,
-                int& total_chaves_inseridas);
+            static void insertPerfectHash(
+                vector<vector<long int>>& nivel_um,
+                vector<vector<long int>>& nivel_dois,
+                long int chave,
+                long int quantidade_de_registros,
+                int a, int b,
+                long int& total_acessos,
+                long int& total_chaves_inseridas);
     };
 }
 

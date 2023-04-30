@@ -11,8 +11,11 @@ namespace HashLinearProbingClass {
         private:
         
         public:
-            static void insertLinearProbingHash(vector<int>& tabela_hash, int chave,
-                    int quantidade_de_registros, int& total_chaves_inseridas, int& total_acessos);
+            static void insertLinearProbingHash(vector<long int>& tabela_hash,
+                long int chave,
+                long int quantidade_de_registros,
+                long int& total_chaves_inseridas,
+                long int& total_acessos);
         
     };
 }

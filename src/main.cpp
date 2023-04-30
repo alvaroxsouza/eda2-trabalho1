@@ -14,62 +14,62 @@ using namespace HashPerfectClass;
 using namespace HashDoubleClass;
 using namespace HashLinearProbingClass;
 
-int entradatamanhoDoArquivo() {
-    int tamanhoDaTabela = 0;
+long int entradatamanhoDoArquivo() {
+    long int tamanhoDaTabela = 0;
     cin >> tamanhoDaTabela;
     return tamanhoDaTabela;
 }
 
-int entradaQuantidadeDeNodesDaEstrutura() {
-    int valorDoNode;
+long int entradaQuantidadeDeNodesDaEstrutura() {
+    long int valorDoNode;
     cin >> valorDoNode;
     return valorDoNode;
 }
 
-Node* inicializaArquivo(int tamanhoDaTabela) {
+Node* inicializaArquivo(long int tamanhoDaTabela) {
     Node* arquivo = new Node[tamanhoDaTabela];
-    for(int i = 0; i < tamanhoDaTabela; i++) {
+    for(long int i = 0; i < tamanhoDaTabela; i++) {
         new (&arquivo[i]) Node();
     }
     return arquivo;
 }
 
 // Função de criação da tabela hash
-vector<int> criar_tabela_hash(int quantidade_de_registros){
-    int posicao_vazia = -1;
-    vector<int> tabela_hash(quantidade_de_registros, posicao_vazia);
+vector<long int> criar_tabela_hash(long int quantidade_de_registros){
+    long int posicao_vazia = -1;
+    vector<long int> tabela_hash(quantidade_de_registros, posicao_vazia);
     return tabela_hash;
 }
 
-void liberaArquivo(Node* arquivo, int tamanhoDaTabela) {
-    for(int i = 0; i < tamanhoDaTabela; i++) {
+void liberaArquivo(Node* arquivo, long int tamanhoDaTabela) {
+    for(long int i = 0; i < tamanhoDaTabela; i++) {
         arquivo[i].~Node();
     }
     delete[] arquivo;
 }
 
 int main() {
-    int tamanhoDoArquivo = entradatamanhoDoArquivo();
-    int qtdEntrada = entradaQuantidadeDeNodesDaEstrutura();
+    long int tamanhoDoArquivo = entradatamanhoDoArquivo();
+    long int qtdEntrada = entradaQuantidadeDeNodesDaEstrutura();
 
-    int posicaoPonteiroControle = tamanhoDoArquivo - 1;
+    long int posicaoPonteiroControle = tamanhoDoArquivo - 1;
 
-    int quantidadeDeAcessosTotalHEEAE = 0;
-    int quantidadeDeAcessosTotalHDouble = 0;
-    int quantidadeDeAcessosTotalHLP = 0;
-    int quantidadeDeAcessosTotalHPerfect = 0;
+    long int quantidadeDeAcessosTotalHEEAE = 0;
+    long int quantidadeDeAcessosTotalHDouble = 0;
+    long int quantidadeDeAcessosTotalHLP = 0;
+    long int quantidadeDeAcessosTotalHPerfect = 0;
     
-    int totalDeChavesInseridasHDouble = 0;
-    int totalDeChavesInseridasHLP = 0;
-    int totalDeChavesInseridasHPerfect = 0;
+    long int totalDeChavesInseridasHDouble = 0;
+    long int totalDeChavesInseridasHLP = 0;
+    long int totalDeChavesInseridasHPerfect = 0;
 
     Node *arquivoHEEAE = inicializaArquivo(tamanhoDoArquivo);
-    vector<int> arquivoDoubleHashing = criar_tabela_hash(tamanhoDoArquivo);
-    vector<int> arquivoPerfectHashing = criar_tabela_hash(tamanhoDoArquivo);
-    vector<int> arquivoLinearProbing = criar_tabela_hash(tamanhoDoArquivo);
+    vector<long int> arquivoDoubleHashing = criar_tabela_hash(tamanhoDoArquivo);
+    vector<long int> arquivoPerfectHashing = criar_tabela_hash(tamanhoDoArquivo);
+    vector<long int> arquivoLinearProbing = criar_tabela_hash(tamanhoDoArquivo);
 
-    for(int i = 0; i < qtdEntrada; i++) {
-        int valorDeEntrada;
+    for(long int i = 0; i < qtdEntrada; i++) {
+        long int valorDeEntrada;
         cin >> valorDeEntrada;
 
         HashEncadeamentoExplicito::insercaoNode(arquivoHEEAE, valorDeEntrada, tamanhoDoArquivo,

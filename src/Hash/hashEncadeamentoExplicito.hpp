@@ -12,8 +12,9 @@ namespace HashEncadeamentoExplicitoClass {
         private:
             
         public:
-            static void insercaoNode(Node* arquivo, int valorNovoNode,
-                int tamanhoDoArquivo, int &posicaoControle, int &quantidadeDeAcessosTotalHEEAE);
+            static void insercaoNode(Node* arquivo, long int valorNovoNode,
+                long int tamanhoDoArquivo, long int &posicaoControle,
+                long int &quantidadeDeAcessosTotalHEEAE);
     };
 }
 
