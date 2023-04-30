@@ -57,8 +57,8 @@ void HashDouble::insertDoubleHash(vector<int>& tabela_hash, int chave, int quant
             tabela_hash[nova_posicao] = chave; // chave inserida
             total_chaves_inseridas++; // incrementa o total de chaves inseridas
             total_acessos++; // incrementa o total de acessos
-        // }
-    }
+        }
+    // }
 }
 
 #endif

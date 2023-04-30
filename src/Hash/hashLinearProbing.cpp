@@ -2,6 +2,7 @@
 #define HASH_LINEAR_PROBING_CPP
 
 #include "hashLinearProbing.hpp"
+#include <iostream>
 
 using namespace std;
 using namespace HashLinearProbingClass;
@@ -14,8 +15,9 @@ int hashLinearProbing1(int chave, int quantidade_de_registros) {
 // Função para inserção das chaves usando hashing com encadeamento linear
 void HashLinearProbing::insertLinearProbingHash(vector<int>& tabela_hash, int chave,
         int quantidade_de_registros, int& total_chaves_inseridas, int& total_acessos) {
-    while(total_chaves_inseridas < quantidade_de_registros) { // se o total de chaves alcançar o número de registros disponíveis encerra o loop
-        if(chave == 0) break; //se chave for 0, saia do loop
+    // while(total_chaves_inseridas < quantidade_de_registros) { // se o total de chaves alcançar o número de registros disponíveis encerra o loop
+        
+        if(chave == 0) return; //se chave for 0, saia do loop
 
         int h1 = hashLinearProbing1(chave, quantidade_de_registros); // chamada para calcular o h1
 
@@ -23,9 +25,7 @@ void HashLinearProbing::insertLinearProbingHash(vector<int>& tabela_hash, int ch
             tabela_hash[h1] = chave; // chave inserida 
             total_chaves_inseridas++; // incrementa o total de chaves inseridas
             total_acessos++; // incrementa o total de acessos
-        } 
-        
-        else { // caso em que, usando h1, a posição calculada está ocupada
+        } else { // caso em que, usando h1, a posição calculada está ocupada
             int i = 1;
             int nova_posicao = (h1 + i) % quantidade_de_registros;
             total_acessos++; // incrementa o total de acessos
@@ -42,7 +42,7 @@ void HashLinearProbing::insertLinearProbingHash(vector<int>& tabela_hash, int ch
             total_chaves_inseridas++; // incrementa o total de chaves inseridas
             total_acessos++; // incrementa o total de acessos
         }
-    }
+    // }
 }
 
 #endif

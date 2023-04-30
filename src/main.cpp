@@ -58,6 +58,10 @@ int main() {
     int quantidadeDeAcessosTotalHDouble = 0;
     int quantidadeDeAcessosTotalHLP = 0;
     int quantidadeDeAcessosTotalHPerfect = 0;
+    
+    int totalDeChavesInseridasHDouble = 0;
+    int totalDeChavesInseridasHLP = 0;
+    int totalDeChavesInseridasHPerfect = 0;
 
     Node *arquivoHEEAE = inicializaArquivo(tamanhoDoArquivo);
     vector<int> arquivoDoubleHashing = criar_tabela_hash(tamanhoDoArquivo);
@@ -72,31 +76,31 @@ int main() {
             posicaoPonteiroControle, quantidadeDeAcessosTotalHEEAE);
         
         HashDouble::insertDoubleHash(arquivoDoubleHashing, valorDeEntrada, tamanhoDoArquivo,
-            qtdEntrada, quantidadeDeAcessosTotalHDouble);
+            totalDeChavesInseridasHDouble, quantidadeDeAcessosTotalHDouble);
         
         HashLinearProbing::insertLinearProbingHash(arquivoLinearProbing, valorDeEntrada,
-            tamanhoDoArquivo, qtdEntrada, quantidadeDeAcessosTotalHLP);
+            qtdEntrada, totalDeChavesInseridasHLP, quantidadeDeAcessosTotalHLP);
         
         // HashPerfect::insertPerfectHash(arquivo, valorDeEntrada, tamanhoDaTabela,
         //     posicaoPonteiroControle, quantidadeDeAcessosTotalHPerfect);
     }
 
     double mediaDeAcessosHEEAE = double(quantidadeDeAcessosTotalHEEAE) / qtdEntrada;
-    double mediaDeAcessosHDouble = double(quantidadeDeAcessosTotalHDouble) / qtdEntrada;
-    double mediaDeAcessosHLP = double(quantidadeDeAcessosTotalHLP) / qtdEntrada;
-    double mediaDeAcessosHPerfect = double(quantidadeDeAcessosTotalHPerfect) / qtdEntrada;
+    double mediaDeAcessosHDouble = double(quantidadeDeAcessosTotalHDouble) / totalDeChavesInseridasHDouble;
+    double mediaDeAcessosHLP = double(quantidadeDeAcessosTotalHLP) / totalDeChavesInseridasHLP;
+    double mediaDeAcessosHPerfect = double(quantidadeDeAcessosTotalHPerfect) / totalDeChavesInseridasHPerfect;
 
     cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
     << quantidadeDeAcessosTotalHEEAE << endl << fixed << setprecision(1) 
     << "Media de acessos: " << mediaDeAcessosHEEAE << endl;
 
-    cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl << fixed 
-    << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
+    cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl;
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
 
-    cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl << fixed 
-    << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
+    cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl; 
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
 
-    cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl 
-    << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
+    cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl;
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
     
 }
