@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=Node/node.cpp Hash/hashEncadeamentoExplicito.cpp main.cpp
+SOURCES=Node/node.cpp Hash/hashEncadeamentoExplicito.cpp Hash/hashDouble.cpp Hash/hashLinearProbing.cpp Hash/hashPerfect.cpp main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=program
 

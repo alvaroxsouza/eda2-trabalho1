@@ -3,6 +3,7 @@
 
 #include "../Node/node.hpp"
 
+using namespace std;
 using namespace NodeClass;
 
 namespace HashEncadeamentoExplicitoClass {
