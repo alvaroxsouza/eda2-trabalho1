@@ -1,8 +1,0 @@
-Quantidade de acessos Encadeamento aberto com alocação estática: 15
-Media de acessos: 1.9
-Quantidade de acessos double hashing: 12
-Media de acessos: 1.5
-Quantidade de acessos linear probing: 15
-Media de acessos: 1.9
-Quantidade de acessos perfect hashing: 0
-Media de acessos: -nan
