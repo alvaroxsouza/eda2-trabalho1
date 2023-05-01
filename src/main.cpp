@@ -67,6 +67,109 @@ void liberaArquivo(Node* arquivo, long int tamanhoDaTabela) {
     delete[] arquivo;
 }
 
+void saidaDoubleHash(vector<long int> tabela_hash, long int quantidade_de_registros) {
+    cout << endl;
+    cout << "################### Double Hash ################### " << endl;
+    cout << "############### Tabela de registros ############### " << endl;
+    for (long int i = 0; i < quantidade_de_registros; i++) {
+        if (tabela_hash[i] == -1) {
+            cout << "Registro " << i << ": Registro Vazio" << endl;
+        }
+        else {
+            cout << "Registro " << i << ": " << tabela_hash[i] << endl;
+        }
+    }
+    cout << "####################################################" << endl;
+    // double media_acessos = calcula_media_acessos(total_acessos, total_chaves_inseridas); // chama função pra calcular a média de acessos
+    // cout << endl;
+    // cout << "Media de acessos: " << media_acessos << endl;
+}
+
+void saidaLinearProbingHash(vector<long int> tabela_hash, long int quantidade_de_registros) {
+    cout << endl;
+    cout << "################## Linear Probing ################### " << endl;
+    cout << "################ Tabela de registros ################ " << endl;
+    for(long int i = 0; i < quantidade_de_registros; i++) {
+        if (tabela_hash[i] == -1) {
+            cout << "Registro " << i << ": Registro Vazio" << endl;
+        }
+        else {
+            cout << "Registro " << i << ": " << tabela_hash[i] << endl;
+        }
+    }
+    cout << "####################################################" << endl;
+    // double media_acessos = calcula_media_acessos(total_acessos, total_chaves_inseridas); // chama função pra calcular a média de acessos
+    // cout << endl;
+    // cout << "Media de acessos: " << media_acessos << endl;
+}
+
+void saidaPefectHash(vector<vector<long int>> nivel_um, vector<vector<long int>> nivel_dois, int quantidade_de_registros, int a, int b) {
+    cout << "################## Perfect Hash ################### " << endl;
+    cout << "################ Tabela de registros ################ " << endl;
+    cout << "Nivel um - principal:" << endl;
+    for (long int i = 0; i < quantidade_de_registros; i++) {
+        cout << "Posicao " << i << ": ";
+        if (nivel_um[i].empty()) {
+            cout << "registro vazio" << endl;
+        } else {
+            for (unsigned long int j = 0; j < nivel_um[i].size(); j++) {
+                cout << nivel_um[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+    cout << endl;
+
+    for (long int i = 0; i < quantidade_de_registros; i++) {   
+        if (nivel_um[i].size() != 0) {
+            cout << "Nivel Dois - secundario:" << endl;
+            cout << "posicao " << i << ":" << endl;
+            for (unsigned long int j = 0; j < nivel_dois[i].size(); j++) {
+                if (nivel_dois[i].size() != 0){
+                    if (nivel_dois[i][j] == 0) {
+                        cout << j << ": registro vazio" << endl;
+                    } 
+                    else {
+                        cout << j << ": " << nivel_dois[i][j] << endl;
+                    }
+                }                
+            }
+            cout << endl;
+        }
+
+    }
+    cout << "####################################################" << endl;
+}
+
+void saidaEstatisticas(
+    long int tamanhoDoArquivo,
+    long int qtdEntrada,
+    long int quantidadeDeAcessosTotalHEEAE,
+    long int mediaDeAcessosHEEAE,
+    long int quantidadeDeAcessosTotalHDouble,
+    long int mediaDeAcessosHDouble,
+    long int quantidadeDeAcessosTotalHLP,
+    long int mediaDeAcessosHLP,
+    long int quantidadeDeAcessosTotalHPerfect,
+    long int mediaDeAcessosHPerfect
+) {
+    cout << "Tamanho do arquivo: " << tamanhoDoArquivo << endl;
+    cout << "Quantidade de chaves: " << qtdEntrada << endl;
+
+    cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
+    << quantidadeDeAcessosTotalHEEAE << endl << fixed << setprecision(1) 
+    << "Media de acessos: " << mediaDeAcessosHEEAE << endl;
+
+    cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl;
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
+
+    cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl; 
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
+
+    cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl;
+    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
+}
+
 int main() {
     long int tamanhoDoArquivo = entradatamanhoDoArquivo();
     long int qtdEntrada = entradaQuantidadeDeNodesDaEstrutura();
@@ -114,27 +217,22 @@ int main() {
 
     HashPerfect::insertPerfectHash(nivel_um, nivel_dois, chaves, qtdEntrada, a, b,
         quantidadeDeAcessosTotalHPerfect, totalDeChavesInseridasHPerfect);
-    arquivoPerfectHashing.clear();
 
     double mediaDeAcessosHEEAE = double(quantidadeDeAcessosTotalHEEAE) / totalDeChavesInseridasHEEAE;
     double mediaDeAcessosHDouble = double(quantidadeDeAcessosTotalHDouble) / totalDeChavesInseridasHDouble;
     double mediaDeAcessosHLP = double(quantidadeDeAcessosTotalHLP) / totalDeChavesInseridasHLP;
     double mediaDeAcessosHPerfect = double(quantidadeDeAcessosTotalHPerfect) / totalDeChavesInseridasHPerfect;
 
-    cout << "Tamanho do arquivo: " << tamanhoDoArquivo << endl;
-    cout << "Quantidade de chaves: " << qtdEntrada << endl;
+    saidaDoubleHash(arquivoDoubleHashing, tamanhoDoArquivo);
+    saidaLinearProbingHash(arquivoLinearProbing, tamanhoDoArquivo);
+    saidaPefectHash(nivel_um, nivel_dois, tamanhoDoArquivo, a, b);
 
-    cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
-    << quantidadeDeAcessosTotalHEEAE << endl << fixed << setprecision(1) 
-    << "Media de acessos: " << mediaDeAcessosHEEAE << endl;
-
-    cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl;
-    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
-
-    cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl; 
-    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
-
-    cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl;
-    cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
+    saidaEstatisticas(
+        tamanhoDoArquivo, qtdEntrada,
+        quantidadeDeAcessosTotalHEEAE, mediaDeAcessosHEEAE,
+        quantidadeDeAcessosTotalHDouble,mediaDeAcessosHDouble,
+        quantidadeDeAcessosTotalHLP, mediaDeAcessosHLP,
+        quantidadeDeAcessosTotalHPerfect, mediaDeAcessosHPerfect
+        );
     
 }

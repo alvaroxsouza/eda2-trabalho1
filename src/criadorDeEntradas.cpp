@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     output_file << n << endl;
 
     for (int i = 0; i < n; i++) {
-        int entrada = rand() % (p - 1) + 1;
+        int entrada = rand() % (1000000 - 1) + 1;
         output_file << entrada << endl;
     }
 
