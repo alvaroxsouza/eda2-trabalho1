@@ -6,38 +6,38 @@
 using namespace HashPerfectClass;
 
 //Função para criação da tabela do nível 1
-vector<vector<long int>> criar_tabela_nivel_um(long int quantidade_de_registros) {
-    vector<vector<long int>> tabela_nivel_um(quantidade_de_registros);
-    return tabela_nivel_um;
-}
+// vector<vector<long int>> criar_tabela_nivel_um(long int quantidade_de_registros) {
+//     vector<vector<long int>> tabela_nivel_um(quantidade_de_registros);
+//     return tabela_nivel_um;
+// }
 
-//Função para criação da tabela do nível 2
-vector<vector<long int>> criar_tabela_nivel_dois(long int quantidade_de_registros) {
-    vector<vector<long int>> tabela_nivel_dois(quantidade_de_registros);
-    return tabela_nivel_dois;
-}
+// //Função para criação da tabela do nível 2
+// vector<vector<long int>> criar_tabela_nivel_dois(long int quantidade_de_registros) {
+//     vector<vector<long int>> tabela_nivel_dois(quantidade_de_registros);
+//     return tabela_nivel_dois;
+// }
 
 // Função para gerar as variáveis a e b, de forma aleatória. Estas irão compôr a função de hash
-void gerar_variaveis_aleatorias(int &a, int &b) {
-    srand(time(NULL));
-    a = rand() % 101;
-    b = rand() % 101;
-}
+// void gerar_variaveis_aleatorias(int &a, int &b) {
+//     srand(time(NULL));
+//     a = rand() % 101;
+//     b = rand() % 101;
+// }
 
 void HashPerfect::insertPerfectHash(vector<vector<long int>>& nivel_um,
                 vector<vector<long int>>& nivel_dois,
-                long int chave,
+                vector<long int>& chaves,
                 long int quantidade_de_registros,
                 int a, int b,
                 long int& total_acessos,
                 long int& total_chaves_inseridas) {
     
-    vector<int> chaves; // Um vetor de chaves, auxiliar, é usado para armazenar as chaves, passadas na entrada, que serão inseridas nos registros
+    // vector<int> chaves; // Um vetor de chaves, auxiliar, é usado para armazenar as chaves, passadas na entrada, que serão inseridas nos registros
 
-    while (chave != 0) { // armazendo as chaves fornecidas na entrada em um vetor auxiliar
-        chaves.push_back(chave);
-        cin >> chave;
-    }
+    // while (chave != 0) { // armazendo as chaves fornecidas na entrada em um vetor auxiliar
+    //     chaves.push_back(chave);
+    //     cin >> chave;
+    // }
 
     // a função de hash é dada por: h = ((a * chave + b) mod 101) mod quantidade de registros. 101 é o maior primo, definido previamente.
 

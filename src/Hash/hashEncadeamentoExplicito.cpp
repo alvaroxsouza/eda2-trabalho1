@@ -49,14 +49,16 @@ void HashEncadeamentoExplicito::insercaoNode(Node* arquivo,
     long int valorNovoNode,
     long int tamanhoDoArquivo,
     long int& posicaoControle,
+    long int& totalDeChavesInseridasHEEAE, 
     long int& quantidadeDeAcessosTotalHEEAE) {
     long int posicaoInicialDeInsercaoNoArquivo = buscaPosicaoInicial(arquivo, valorNovoNode, tamanhoDoArquivo);
 
     if (!arquivo[posicaoInicialDeInsercaoNoArquivo].isEstaOcupado())
     {
-        quantidadeDeAcessosTotalHEEAE++;
         arquivo[posicaoInicialDeInsercaoNoArquivo].setValorDoNode(valorNovoNode);
         arquivo[posicaoInicialDeInsercaoNoArquivo].setEstaOcupado(true);
+        quantidadeDeAcessosTotalHEEAE++;
+        totalDeChavesInseridasHEEAE++;
     } else {
         long int posicaoAtualNaLista = encontrarUltimoNoLivreNaListaEncadeada(arquivo, posicaoControle,
                                 quantidadeDeAcessosTotalHEEAE, posicaoInicialDeInsercaoNoArquivo);
@@ -67,6 +69,7 @@ void HashEncadeamentoExplicito::insercaoNode(Node* arquivo,
             arquivo[posicaoAtualNaLista].setProximoNode(posicaoControle);
             arquivo[posicaoControle].setValorDoNode(valorNovoNode);
             arquivo[posicaoControle].setEstaOcupado(true);
+            totalDeChavesInseridasHEEAE++;
             quantidadeDeAcessosTotalHEEAE++;
         }
     }

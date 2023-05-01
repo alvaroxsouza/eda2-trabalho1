@@ -1,37 +1,46 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
-bool is_prime(int n) {
-    if (n <= 1) {
+bool isPrime(int num) {
+    if (num <= 1) {
         return false;
     }
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) {
+    for (int i = 2; i <= sqrt(num); i++) {
+        if (num % i == 0) {
             return false;
         }
     }
     return true;
 }
 
-int main() {
-    srand(time(0));
-    int p = rand() % 999990 + 11;
-    while (!is_prime(p)) {
-        p = rand() % 999990 + 11;
+int main(int argc, char* argv[]) {
+    int p = atoi(argv[1]);
+    int n = atoi(argv[2]);
+
+    if (!isPrime(p)) {
+        cout << "p must be a prime number." << endl;
+        return 1;
     }
-    ofstream file;
-    file.open("entrada.txt");
-    file << p << endl;
-    int n = rand() % (p - 1) + 1;
-    file << n << endl;
+
+    srand(time(NULL));
+
+    ofstream output_file("entrada.txt");
+
+    output_file << p << endl;
+    output_file << n << endl;
+
     for (int i = 0; i < n; i++) {
-        int x = rand() % 1000000 + 1;
-        file << x << endl;
+        int entrada = rand() % (p - 1) + 1;
+        output_file << entrada << endl;
     }
-    file.close();
+
+    output_file.close();
+
     return 0;
 }

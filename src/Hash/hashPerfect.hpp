@@ -16,7 +16,7 @@ namespace HashPerfectClass {
             static void insertPerfectHash(
                 vector<vector<long int>>& nivel_um,
                 vector<vector<long int>>& nivel_dois,
-                long int chave,
+                vector<long int>& chaves,
                 long int quantidade_de_registros,
                 int a, int b,
                 long int& total_acessos,

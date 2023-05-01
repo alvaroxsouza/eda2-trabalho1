@@ -41,6 +41,25 @@ vector<long int> criar_tabela_hash(long int quantidade_de_registros){
     return tabela_hash;
 }
 
+//Função para criação da tabela do nível 1
+vector<vector<long int>> criar_tabela_nivel_um(long int quantidade_de_registros) {
+    vector<vector<long int>> tabela_nivel_um(quantidade_de_registros);
+    return tabela_nivel_um;
+}
+
+//Função para criação da tabela do nível 2
+vector<vector<long int>> criar_tabela_nivel_dois(long int quantidade_de_registros) {
+    vector<vector<long int>> tabela_nivel_dois(quantidade_de_registros);
+    return tabela_nivel_dois;
+}
+
+// Função para gerar as variáveis a e b, de forma aleatória. Estas irão compôr a função de hash
+void gerar_variaveis_aleatorias(int &a, int &b) {
+    srand(time(NULL));
+    a = rand() % 101;
+    b = rand() % 101;
+}
+
 void liberaArquivo(Node* arquivo, long int tamanhoDaTabela) {
     for(long int i = 0; i < tamanhoDaTabela; i++) {
         arquivo[i].~Node();
@@ -59,6 +78,7 @@ int main() {
     long int quantidadeDeAcessosTotalHLP = 0;
     long int quantidadeDeAcessosTotalHPerfect = 0;
     
+    long int totalDeChavesInseridasHEEAE = 0;
     long int totalDeChavesInseridasHDouble = 0;
     long int totalDeChavesInseridasHLP = 0;
     long int totalDeChavesInseridasHPerfect = 0;
@@ -68,27 +88,41 @@ int main() {
     vector<long int> arquivoPerfectHashing = criar_tabela_hash(tamanhoDoArquivo);
     vector<long int> arquivoLinearProbing = criar_tabela_hash(tamanhoDoArquivo);
 
+    vector<long int> chaves;
+
     for(long int i = 0; i < qtdEntrada; i++) {
         long int valorDeEntrada;
         cin >> valorDeEntrada;
 
         HashEncadeamentoExplicito::insercaoNode(arquivoHEEAE, valorDeEntrada, tamanhoDoArquivo,
-            posicaoPonteiroControle, quantidadeDeAcessosTotalHEEAE);
+            posicaoPonteiroControle, totalDeChavesInseridasHEEAE, quantidadeDeAcessosTotalHEEAE);
         
         HashDouble::insertDoubleHash(arquivoDoubleHashing, valorDeEntrada, tamanhoDoArquivo,
             totalDeChavesInseridasHDouble, quantidadeDeAcessosTotalHDouble);
         
         HashLinearProbing::insertLinearProbingHash(arquivoLinearProbing, valorDeEntrada,
             qtdEntrada, totalDeChavesInseridasHLP, quantidadeDeAcessosTotalHLP);
-        
-        // HashPerfect::insertPerfectHash(arquivo, valorDeEntrada, tamanhoDaTabela,
-        //     posicaoPonteiroControle, quantidadeDeAcessosTotalHPerfect);
+
+        chaves.push_back(valorDeEntrada);
     }
 
-    double mediaDeAcessosHEEAE = double(quantidadeDeAcessosTotalHEEAE) / qtdEntrada;
+    int a, b;
+    gerar_variaveis_aleatorias(a, b);
+
+    vector<vector<long int>> nivel_um = criar_tabela_nivel_um(qtdEntrada); // chama a função para criar a tabela do primeiro nível
+    vector<vector<long int>> nivel_dois = criar_tabela_nivel_dois(qtdEntrada); // chama a função para criar a tabela do segundo nível
+
+    HashPerfect::insertPerfectHash(nivel_um, nivel_dois, chaves, qtdEntrada, a, b,
+        quantidadeDeAcessosTotalHPerfect, totalDeChavesInseridasHPerfect);
+    arquivoPerfectHashing.clear();
+
+    double mediaDeAcessosHEEAE = double(quantidadeDeAcessosTotalHEEAE) / totalDeChavesInseridasHEEAE;
     double mediaDeAcessosHDouble = double(quantidadeDeAcessosTotalHDouble) / totalDeChavesInseridasHDouble;
     double mediaDeAcessosHLP = double(quantidadeDeAcessosTotalHLP) / totalDeChavesInseridasHLP;
     double mediaDeAcessosHPerfect = double(quantidadeDeAcessosTotalHPerfect) / totalDeChavesInseridasHPerfect;
+
+    cout << "Tamanho do arquivo: " << tamanhoDoArquivo << endl;
+    cout << "Quantidade de chaves: " << qtdEntrada << endl;
 
     cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
     << quantidadeDeAcessosTotalHEEAE << endl << fixed << setprecision(1) 
