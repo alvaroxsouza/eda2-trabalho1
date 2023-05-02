@@ -2,6 +2,7 @@
 #define HASH_DOUBLE_CPP
 
 #include "hashDouble.hpp"
+#include <iostream>
 
 using namespace HashDoubleClass;
 

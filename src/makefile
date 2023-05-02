@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=Node/node.cpp Hash/hashEncadeamentoExplicito.cpp Hash/hashDouble.cpp Hash/hashLinearProbing.cpp Hash/hashPerfect.cpp main.cpp
+SOURCES=Node/node.cpp Hash/hashEncadeamentoExplicito.cpp Hash/hashEncadeamentoExplicitoSaida.cpp Hash/hashDouble.cpp Hash/hashDoubleSaida.cpp Hash/hashLinearProbing.cpp Hash/hashLinearProbingSaida.cpp Hash/hashPerfect.cpp Hash/hashPerfectSaida.cpp main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 ENTRY_GENERATOR_SOURCES=criadorDeEntradas.cpp
 ENTRY_GENERATOR_OBJECTS=$(ENTRY_GENERATOR_SOURCES:.cpp=.o)

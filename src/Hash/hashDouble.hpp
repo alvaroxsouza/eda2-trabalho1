@@ -16,7 +16,13 @@ namespace HashDoubleClass {
                 long int chave,
                 long int quantidade_de_registros,
                 long int& total_chaves_inseridas,
-                long int& total_acessos);
+                long int& total_acessos
+                );
+                
+            static void saidaDoubleHash(
+                vector<long int>& tabela_hash,
+                long int quantidade_de_registros
+                );
     };
 }
 

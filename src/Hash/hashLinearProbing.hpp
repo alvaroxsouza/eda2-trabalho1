@@ -16,6 +16,11 @@ namespace HashLinearProbingClass {
                 long int quantidade_de_registros,
                 long int& total_chaves_inseridas,
                 long int& total_acessos);
+                
+            static void saidaLinearProbingHash(
+                vector<long int>& tabela_hash,
+                long int quantidade_de_registros
+                );
         
     };
 }
