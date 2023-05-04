@@ -16,6 +16,8 @@ namespace HashEncadeamentoExplicitoClass {
                 long int tamanhoDoArquivo, long int &posicaoControle,
                 long int& totalDeChavesInseridasHEEAE,
                 long int& quantidadeDeAcessosTotalHEEAE);
+
+            static void saidaEncadeamentoExplicitoHash(Node* arquivo, long int tamanhoDoArquivo);
     };
 }
 

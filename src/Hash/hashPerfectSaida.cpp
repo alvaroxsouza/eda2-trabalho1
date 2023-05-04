@@ -21,9 +21,11 @@ void HashPerfect::saidaPefectHash(
         if (nivel_um[i].empty()) {
             cout << "registro vazio" << endl;
         } else {
-            for (unsigned long int j = 0; j < nivel_um[i].size(); j++) {
-                cout << nivel_um[i][j] << " ";
-            }
+            cout << "Tamanho do registro: " << i << nivel_um[i].size() << endl;
+            // for (unsigned long int j = 0; j < nivel_um[i].size(); j++) {
+            //     cout << "Entrou aqui" << endl;
+            //     // cout << nivel_um[i][j] << " ";
+            // }
             cout << endl;
         }
     }

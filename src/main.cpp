@@ -68,23 +68,23 @@ void saidaInformacoesArquivo(long int tamanhoDoArquivo,long int qtdEntrada) {
     cout << "Quantidade de chaves: " << qtdEntrada << endl;
 }
 
-void estatisticasHEEAE(long int quantidadeDeAcessosTotalHEEAE, long int mediaDeAcessosHEEAE) {
+void estatisticasHEEAE(long int quantidadeDeAcessosTotalHEEAE, double mediaDeAcessosHEEAE) {
     cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
     << quantidadeDeAcessosTotalHEEAE << endl << fixed << setprecision(1) 
     << "Media de acessos: " << mediaDeAcessosHEEAE << endl;
 }
 
-void estatisticasHDouble(long int quantidadeDeAcessosTotalHDouble,long int mediaDeAcessosHDouble) {
+void estatisticasHDouble(long int quantidadeDeAcessosTotalHDouble, double mediaDeAcessosHDouble) {
     cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl;
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
 }
 
-void estatisticasHLinearProbing(long int quantidadeDeAcessosTotalHLP,long int mediaDeAcessosHLP) {
+void estatisticasHLinearProbing(long int quantidadeDeAcessosTotalHLP, double mediaDeAcessosHLP) {
     cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl; 
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
 }
 
-void estatisticasHPerfect(long int quantidadeDeAcessosTotalHPerfect,long int mediaDeAcessosHPerfect) {
+void estatisticasHPerfect(long int quantidadeDeAcessosTotalHPerfect, double mediaDeAcessosHPerfect) {
     cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl;
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
 }
@@ -142,9 +142,10 @@ int main() {
     double mediaDeAcessosHLP = double(quantidadeDeAcessosTotalHLP) / totalDeChavesInseridasHLP;
     double mediaDeAcessosHPerfect = double(quantidadeDeAcessosTotalHPerfect) / totalDeChavesInseridasHPerfect;
 
+    HashEncadeamentoExplicito::saidaEncadeamentoExplicitoHash(arquivoHEEAE, tamanhoDoArquivo);
     HashDouble::saidaDoubleHash(arquivoDoubleHashing, tamanhoDoArquivo);
     HashLinearProbing::saidaLinearProbingHash(arquivoLinearProbing, tamanhoDoArquivo);
-    HashPerfect::saidaPefectHash(nivel_um, nivel_dois, tamanhoDoArquivo, a, b);
+    // HashPerfect::saidaPefectHash(nivel_um, nivel_dois, tamanhoDoArquivo, a, b);
 
     saidaInformacoesArquivo(tamanhoDoArquivo, qtdEntrada);
     estatisticasHEEAE(quantidadeDeAcessosTotalHEEAE, mediaDeAcessosHEEAE);

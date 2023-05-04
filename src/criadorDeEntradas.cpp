@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,9 +25,11 @@ int main(int argc, char* argv[]) {
     int n = atoi(argv[2]);
 
     if (!isPrime(p)) {
-        cout << "p must be a prime number." << endl;
+        cout << "P não é número primo" << endl;
         return 1;
     }
+
+
 
     srand(time(NULL));
 
@@ -35,11 +38,15 @@ int main(int argc, char* argv[]) {
     output_file << p << endl;
     output_file << n << endl;
 
+    vector<int> entradas;
     for (int i = 0; i < n; i++) {
-        int entrada = rand() % (1000000 - 1) + 1;
+        int entrada;
+        do {
+            entrada = rand() % 121 + 80;
+        } while (find(entradas.begin(), entradas.end(), entrada) != entradas.end());
+        entradas.push_back(entrada);
         output_file << entrada << endl;
     }
-
     output_file.close();
 
     return 0;

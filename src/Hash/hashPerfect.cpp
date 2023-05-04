@@ -43,6 +43,7 @@ void HashPerfect::insertPerfectHash(vector<vector<long int>>& nivel_um,
 
     // Inserção na tabela principal
     for (unsigned long int i = 0; i < chaves.size(); i++) {
+        // tem um erro aqui que acredito ser na hora que está fazendo o resize do vetor, acrditando que está fazendo o redimensionamento de maneira errada
         long int h = ((a * chaves[i] + b) % 101) % quantidade_de_registros; // cálculo do hash
         nivel_um[h].resize(nivel_um[h].size() + 1, chaves[i]); // insere a chave no nível um
         total_acessos++; // incrementa o total de acessos
