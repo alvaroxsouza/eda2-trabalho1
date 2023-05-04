@@ -10,9 +10,7 @@ using namespace HashPerfectClass;
 void HashPerfect::saidaPefectHash(
     vector<vector<long int>>& nivel_um,
     vector<vector<long int>>& nivel_dois,
-    long int quantidade_de_registros,
-    int a,
-    int b) {
+    long int quantidade_de_registros) {
     cout << "################## Perfect Hash ################### " << endl;
     cout << "################ Tabela de registros ################ " << endl;
     cout << "Nivel um - principal:" << endl;
@@ -22,10 +20,10 @@ void HashPerfect::saidaPefectHash(
             cout << "registro vazio" << endl;
         } else {
             cout << "Tamanho do registro: " << i << nivel_um[i].size() << endl;
-            // for (unsigned long int j = 0; j < nivel_um[i].size(); j++) {
-            //     cout << "Entrou aqui" << endl;
-            //     // cout << nivel_um[i][j] << " ";
-            // }
+            for (unsigned long int j = 0; j < nivel_um[i].size(); j++) {
+                // cout << "Entrou aqui" << endl;
+                cout << nivel_um[i][j] << " ";
+            }
             cout << endl;
         }
     }

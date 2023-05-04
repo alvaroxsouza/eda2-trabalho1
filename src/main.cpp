@@ -112,10 +112,8 @@ int main() {
 
     vector<long int> chaves;
 
-    for(long int i = 0; i < qtdEntrada; i++) {
-        long int valorDeEntrada;
-        cin >> valorDeEntrada;
-
+    long int valorDeEntrada;
+    while(cin >> valorDeEntrada) {
         HashEncadeamentoExplicito::insercaoNode(arquivoHEEAE, valorDeEntrada, tamanhoDoArquivo,
             posicaoPonteiroControle, totalDeChavesInseridasHEEAE, quantidadeDeAcessosTotalHEEAE);
         
@@ -123,7 +121,7 @@ int main() {
             totalDeChavesInseridasHDouble, quantidadeDeAcessosTotalHDouble);
         
         HashLinearProbing::insertLinearProbingHash(arquivoLinearProbing, valorDeEntrada,
-            qtdEntrada, totalDeChavesInseridasHLP, quantidadeDeAcessosTotalHLP);
+            tamanhoDoArquivo, totalDeChavesInseridasHLP, quantidadeDeAcessosTotalHLP);
 
         chaves.push_back(valorDeEntrada);
     }
@@ -145,7 +143,7 @@ int main() {
     HashEncadeamentoExplicito::saidaEncadeamentoExplicitoHash(arquivoHEEAE, tamanhoDoArquivo);
     HashDouble::saidaDoubleHash(arquivoDoubleHashing, tamanhoDoArquivo);
     HashLinearProbing::saidaLinearProbingHash(arquivoLinearProbing, tamanhoDoArquivo);
-    // HashPerfect::saidaPefectHash(nivel_um, nivel_dois, tamanhoDoArquivo, a, b);
+    HashPerfect::saidaPefectHash(nivel_um, nivel_dois, tamanhoDoArquivo);
 
     saidaInformacoesArquivo(tamanhoDoArquivo, qtdEntrada);
     estatisticasHEEAE(quantidadeDeAcessosTotalHEEAE, mediaDeAcessosHEEAE);

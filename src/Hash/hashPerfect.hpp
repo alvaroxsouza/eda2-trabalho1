@@ -26,9 +26,7 @@ namespace HashPerfectClass {
             static void saidaPefectHash(
                 vector<vector<long int>>& nivel_um,
                 vector<vector<long int>>& nivel_dois,
-                long int quantidade_de_registros,
-                int a,
-                int b
+                long int quantidade_de_registros
                 );
     };
 }
