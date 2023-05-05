@@ -91,7 +91,7 @@ void estatisticasHPerfect(long int quantidadeDeAcessosTotalHPerfect, double medi
 
 int main() {
     long int tamanhoDoArquivo = entradatamanhoDoArquivo();
-    long int qtdEntrada = entradaQuantidadeDeNodesDaEstrutura();
+    long int qtdEntrada = 0;
 
     long int posicaoPonteiroControle = tamanhoDoArquivo - 1;
 
@@ -124,15 +124,17 @@ int main() {
             tamanhoDoArquivo, totalDeChavesInseridasHLP, quantidadeDeAcessosTotalHLP);
 
         chaves.push_back(valorDeEntrada);
+        qtdEntrada++;
     }
+
 
     int a, b;
     gerar_variaveis_aleatorias(a, b);
 
-    vector<vector<long int>> nivel_um = criar_tabela_nivel_um(qtdEntrada);
-    vector<vector<long int>> nivel_dois = criar_tabela_nivel_dois(qtdEntrada);
+    vector<vector<long int>> nivel_um = criar_tabela_nivel_um(tamanhoDoArquivo);
+    vector<vector<long int>> nivel_dois = criar_tabela_nivel_dois(tamanhoDoArquivo);
 
-    HashPerfect::insertPerfectHash(nivel_um, nivel_dois, chaves, qtdEntrada, a, b,
+    HashPerfect::insertPerfectHash(nivel_um, nivel_dois, chaves, tamanhoDoArquivo, a, b,
         quantidadeDeAcessosTotalHPerfect, totalDeChavesInseridasHPerfect);
 
     double mediaDeAcessosHEEAE = double(quantidadeDeAcessosTotalHEEAE) / totalDeChavesInseridasHEEAE;

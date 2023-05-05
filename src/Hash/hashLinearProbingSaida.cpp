@@ -10,8 +10,8 @@ using namespace HashLinearProbingClass;
 void HashLinearProbing::saidaLinearProbingHash(vector<long int>& tabela_hash,
     long int quantidade_de_registros) {
     cout << endl;
-    cout << "################## Linear Probing ################### " << endl;
-    cout << "################ Tabela de registros ################ " << endl;
+    cout << "################## Sondagem Linear ################### " << endl;
+    cout << "################ Tabela de registros ################# " << endl;
     for(long int i = 0; i < quantidade_de_registros; i++) {
         if (tabela_hash[i] == -1) {
             cout << "Registro " << i << ": Registro Vazio" << endl;
@@ -20,7 +20,7 @@ void HashLinearProbing::saidaLinearProbingHash(vector<long int>& tabela_hash,
             cout << "Registro " << i << ": " << tabela_hash[i] << endl;
         }
     }
-    cout << "####################################################" << endl;
+    cout << "######################################################" << endl;
 }
 
 #endif

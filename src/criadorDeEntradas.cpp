@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     ofstream output_file("entrada.txt");
 
     output_file << p << endl;
-    output_file << n << endl;
+    // output_file << n << endl;
 
     vector<int> entradas;
     for (int i = 0; i < n; i++) {

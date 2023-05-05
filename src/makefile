@@ -26,7 +26,7 @@ run-valgrind: $(ENTRY_FILE) $(EXECUTABLE)
 	valgrind --leak-check=full ./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
 
 create-input:
-	./criadorDeEntradas 101 100
+	./criadorDeEntradas 11 7
 
 run:
 	./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt

@@ -9,7 +9,6 @@ using namespace HashEncadeamentoExplicitoClass;
 
 void HashEncadeamentoExplicito::saidaEncadeamentoExplicitoHash(Node* arquivo,
     long int tamanhoDoArquivo) {
-        cout << endl;
     cout << "################### Encadeamento explícito com #################### " << endl;
     cout << "####################### Alocação estática ######################### " << endl;
     cout << "####################### Tabela de registros ####################### " << endl;
