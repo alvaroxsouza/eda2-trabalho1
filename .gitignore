@@ -34,3 +34,5 @@
 src/criadorDeEntradas
 
 *.txt
+
+.vscode
