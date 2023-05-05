@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < n; i++) {
         int entrada;
         do {
-            entrada = rand() % 121 + 80;
+            entrada = rand() % 551 + 80;
         } while (find(entradas.begin(), entradas.end(), entrada) != entradas.end());
         entradas.push_back(entrada);
         output_file << entrada << endl;

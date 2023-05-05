@@ -75,17 +75,17 @@ void estatisticasHEEAE(long int quantidadeDeAcessosTotalHEEAE, double mediaDeAce
 }
 
 void estatisticasHDouble(long int quantidadeDeAcessosTotalHDouble, double mediaDeAcessosHDouble) {
-    cout << "Quantidade de acessos double hashing: " << quantidadeDeAcessosTotalHDouble << endl;
+    cout << "Quantidade de acessos hashing duplo: " << quantidadeDeAcessosTotalHDouble << endl;
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHDouble << endl;
 }
 
 void estatisticasHLinearProbing(long int quantidadeDeAcessosTotalHLP, double mediaDeAcessosHLP) {
-    cout << "Quantidade de acessos linear probing: " << quantidadeDeAcessosTotalHLP << endl; 
+    cout << "Quantidade de acessos sondagem linear: " << quantidadeDeAcessosTotalHLP << endl; 
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHLP << endl;
 }
 
 void estatisticasHPerfect(long int quantidadeDeAcessosTotalHPerfect, double mediaDeAcessosHPerfect) {
-    cout << "Quantidade de acessos perfect hashing: " << quantidadeDeAcessosTotalHPerfect << endl;
+    cout << "Quantidade de acessos hashing perfeito: " << quantidadeDeAcessosTotalHPerfect << endl;
     cout << fixed << setprecision(1) << "Media de acessos: " << mediaDeAcessosHPerfect << endl;
 }
 

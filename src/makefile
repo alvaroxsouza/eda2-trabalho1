@@ -29,4 +29,4 @@ create-input:
 	./criadorDeEntradas 11 7
 
 run:
-	./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
+	./$(EXECUTABLE) <$(ENTRY_FILE) >saida10.txt
