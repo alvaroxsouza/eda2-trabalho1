@@ -2,10 +2,11 @@
 #include <iomanip>
 
 #include "node/node.hpp"
-#include "Hash/encadeamento_explicito_hash/encadeamento_explicito.hpp"
-#include "Hash/duplo_hash/duplo_hash.hpp"
-#include "Hash/sondagem_linear_hash/sondagem_linear.hpp"
-#include "Hash/perfeito_hash/hash_perfeito.hpp"
+#include "hash/encadeamento_explicito_hash/encadeamento_explicito.hpp"
+#include "hash/duplo_hash/duplo_hash.hpp"
+#include "hash/sondagem_linear_hash/sondagem_linear.hpp"
+#include "hash/perfeito_hash/hash_perfeito.hpp"
+#include "saida_programa/saida.hpp"
 
 using namespace std;
 using namespace node_class;
@@ -13,6 +14,7 @@ using namespace hash_encadeamento_explicito_class;
 using namespace hash_perfeito_class;
 using namespace hash_duplo_class;
 using namespace sondagem_linear_hash_class;
+using namespace saida_class;
 
 long int entrada_tamanho_do_arquivo() {
     long int tamanho_tabela = 0;
@@ -48,32 +50,6 @@ void gerar_numeros_aleatorios(int &a, int &b) {
     srand(time(NULL));
     a = rand() % 101;
     b = rand() % 101;
-}
-
-void informacoes_arquivo_final(long int tamanho_arquivo,long int quantidade_chaves) {
-    cout << "Tamanho do arquivo: " << tamanho_arquivo << endl;
-    cout << "Quantidade de chaves: " << quantidade_chaves << endl;
-}
-
-void estatisticas_HEEAE(long int quantidade_acessos_total_HEEAE, double media_acessos_HEEAE) {
-    cout << "Quantidade de acessos Encadeamento aberto com alocação estática: " 
-    << quantidade_acessos_total_HEEAE << endl << fixed << setprecision(1) 
-    << "Media de acessos: " << media_acessos_HEEAE << endl;
-}
-
-void estatisticas_duplo_hash(long int quantidade_acessos_total_duplo, double media_acessos_duplo) {
-    cout << "Quantidade de acessos hashing duplo: " << quantidade_acessos_total_duplo << endl;
-    cout << fixed << setprecision(1) << "Media de acessos: " << media_acessos_duplo << endl;
-}
-
-void estatisticas_sondagem_linear(long int quantidade_acessos_total_sondagem_linear, double media_acessos_sondagem_linear) {
-    cout << "Quantidade de acessos sondagem linear: " << quantidade_acessos_total_sondagem_linear << endl; 
-    cout << fixed << setprecision(1) << "Media de acessos: " << media_acessos_sondagem_linear << endl;
-}
-
-void estatisticas_perfeito_hash(long int quantidade_acessos_total_perfeito, double media_acessos_perfeito) {
-    cout << "Quantidade de acessos hashing perfeito: " << quantidade_acessos_total_perfeito << endl;
-    cout << fixed << setprecision(1) << "Media de acessos: " << media_acessos_perfeito << endl;
 }
 
 int main() {
@@ -155,9 +131,11 @@ int main() {
     sondagem_linear_hash::saida_sondagem_linear(arquivo_sondagem_linear, tamanho_arquivo);
     hash_perfeito::saida_perfeito_hash(nivel_um, nivel_dois, tamanho_arquivo);
 
-    informacoes_arquivo_final(tamanho_arquivo, quantidade_chaves);
-    estatisticas_HEEAE(quantidade_acessos_total_HEEAE, media_acessos_HEEAE);
-    estatisticas_duplo_hash(quantidade_acessos_total_duplo,media_acessos_duplo);
-    estatisticas_sondagem_linear(quantidade_acessos_total_sondagem_linear, media_acessos_sondagem_linear);
-    estatisticas_perfeito_hash(quantidade_acessos_total_perfeito, media_acessos_perfeito);
+    saida::saida_informacoes_gerais_estatisticas(
+        tamanho_arquivo, quantidade_chaves,
+        quantidade_acessos_total_HEEAE, media_acessos_HEEAE,
+        quantidade_acessos_total_duplo, media_acessos_duplo,
+        quantidade_acessos_total_sondagem_linear, media_acessos_sondagem_linear,
+        quantidade_acessos_total_perfeito, media_acessos_perfeito
+    );
 }

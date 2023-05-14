@@ -31,8 +31,8 @@
 *.out
 *.app
 
+# Específicos do programa
 src/criadorDeEntradas
-
 *.txt
-
 .vscode
+src/program

@@ -9,14 +9,14 @@
 using namespace std;
 
 //Função para criação da tabela do nível 1
-vector<vector<int>> criar_tabela_nivel_um(int quantidade_de_registros){
-    vector<vector<int>> tabela_nivel_um(quantidade_de_registros);
+vector<vector<int>> criar_tabela_nivel_um(int tamanho_arquivo){
+    vector<vector<int>> tabela_nivel_um(tamanho_arquivo);
     return tabela_nivel_um;
 }
 
 //Função para criação da tabela do nível 2
-vector<vector<int>> criar_tabela_nivel_dois(int quantidade_de_registros){
-    vector<vector<int>> tabela_nivel_dois(quantidade_de_registros);
+vector<vector<int>> criar_tabela_nivel_dois(int tamanho_arquivo){
+    vector<vector<int>> tabela_nivel_dois(tamanho_arquivo);
     return tabela_nivel_dois;
 }
 
@@ -27,7 +27,7 @@ void gerar_variaveis_aleatorias(int &a, int &b) {
     b = rand() % 101;
 }
 
-void insere(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int quantidade_de_registros, int a, int b, int& total_acessos, int& total_chaves_inseridas) {
+void insere(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int tamanho_arquivo, int a, int b, int& total_acessos, int& total_chaves_inseridas) {
     vector<int> chaves; // Um vetor de chaves, auxiliar, é usado para armazenar as chaves, passadas na entrada, que serão inseridas nos registros
     int chave;
     cin >> chave;
@@ -41,7 +41,7 @@ void insere(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int 
 
     // Inserção na tabela principal
     for (int i = 0; i < chaves.size(); i++) {
-        int h = ((a * chaves[i] + b) % 101) % quantidade_de_registros; // cálculo do hash
+        int h = ((a * chaves[i] + b) % 101) % tamanho_arquivo; // cálculo do hash
         nivel_um[h].resize(nivel_um[h].size() + 1, chaves[i]); // insere a chave no nível um
         total_acessos++; // incrementa o total de acessos
         total_chaves_inseridas++; // incrementa o total de chaves inseridas
@@ -51,10 +51,10 @@ void insere(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int 
     na tabela secundária tem tamanho igual a um referente a única chave a ser inserida. Por outro lado, quando em uma dada
     posição na tabela principal há mais de uma chave, essa posição na tabela secundária tem tamanho igual ao número de chaves
     nessa posição elevado ao quadrado*/
-    for (int i = 0; i < quantidade_de_registros; i++) {
+    for (int i = 0; i < tamanho_arquivo; i++) {
         int n = nivel_um[i].size();
         if (n == 1) {
-            int h = ((a * nivel_um[i][0] + b) % 101) % quantidade_de_registros;
+            int h = ((a * nivel_um[i][0] + b) % 101) % tamanho_arquivo;
             nivel_dois[h].resize(1, nivel_um[i][0]);
             total_acessos++; // incrementa o total de acessos
         } else if (n > 1) {
@@ -88,9 +88,9 @@ double calcula_media_acessos(int total_acessos, int total_chaves_inseridas) {
 
 /* Funçao de saída : mostra tabela com as chaves inseridas em suas respectivas posições (tabelas primária e secundária) e mostra a média
  de acessos feitos para realizar essas inserções*/
-void saida(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int quantidade_de_registros, int a, int b, int total_acessos, int total_chaves_inseridas) {
+void saida(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int tamanho_arquivo, int a, int b, int total_acessos, int total_chaves_inseridas) {
     cout << "Nivel um - principal:" << endl;
-    for (int i = 0; i < quantidade_de_registros; i++) {
+    for (int i = 0; i < tamanho_arquivo; i++) {
         cout << "Posicao " << i << ": ";
         if (nivel_um[i].empty()) {
             cout << "registro vazio" << endl;
@@ -103,7 +103,7 @@ void saida(vector<vector<int>>& nivel_um, vector<vector<int>>& nivel_dois, int q
     }
     cout << endl;
 
-    for (int i = 0; i < quantidade_de_registros; i++) {   
+    for (int i = 0; i < tamanho_arquivo; i++) {   
         if (nivel_um[i].size() != 0) {
             cout << "Nivel Dois - secundario:" << endl;
             cout << "posicao " << i << ":" << endl;
@@ -135,18 +135,18 @@ Linhas seguintes: valor das chaves a serem inseridas
 */
 
 int main() {
-    int quantidade_de_registros;
-    cin >> quantidade_de_registros;
+    int tamanho_arquivo;
+    cin >> tamanho_arquivo;
 
     int total_chaves_inseridas = 0, total_acessos = 0;
 
-    vector<vector<int>> nivel_um = criar_tabela_nivel_um(quantidade_de_registros); // chama a função para criar a tabela do primeiro nível
-    vector<vector<int>> nivel_dois = criar_tabela_nivel_dois(quantidade_de_registros); // chama a função para criar a tabela do segundo nível
+    vector<vector<int>> nivel_um = criar_tabela_nivel_um(tamanho_arquivo); // chama a função para criar a tabela do primeiro nível
+    vector<vector<int>> nivel_dois = criar_tabela_nivel_dois(tamanho_arquivo); // chama a função para criar a tabela do segundo nível
     
     int a, b;
     gerar_variaveis_aleatorias(a, b); // chama função para geração de variáveis aleatórias
     
-    insere(nivel_um, nivel_dois, quantidade_de_registros, a, b, total_acessos, total_chaves_inseridas); // chama função para inserção das chaves 
+    insere(nivel_um, nivel_dois, tamanho_arquivo, a, b, total_acessos, total_chaves_inseridas); // chama função para inserção das chaves 
 
     // abrir um arquivo de texto para escrever as saídas
     ofstream arquivo_saida("saida.txt");
@@ -155,7 +155,7 @@ int main() {
     streambuf* backup = cout.rdbuf();
     cout.rdbuf(arquivo_saida.rdbuf());
     
-    saida(nivel_um, nivel_dois, quantidade_de_registros, a, b, total_acessos, total_chaves_inseridas); // chama função para produzir a saída
+    saida(nivel_um, nivel_dois, tamanho_arquivo, a, b, total_acessos, total_chaves_inseridas); // chama função para produzir a saída
 
     return 0;
 }

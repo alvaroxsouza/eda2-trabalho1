@@ -4,15 +4,16 @@ LDFLAGS=
 SOURCES= \
 	main.cpp \
 	node/node.cpp \
-	Hash/funcao_hash/funcao_hash.cpp \
-	Hash/encadeamento_explicito_hash/encadeamento_explicito.cpp \
-	Hash/encadeamento_explicito_hash/encadeamento_explicito_saida.cpp \
-	Hash/duplo_hash/duplo_hash.cpp \
-	Hash/duplo_hash/duplo_hash_saida.cpp \
-	Hash/sondagem_linear_hash/sondagem_linear.cpp \
-	Hash/sondagem_linear_hash/sondagem_linear_saida.cpp \
-	Hash/perfeito_hash/hash_perfeito.cpp \
-	Hash/perfeito_hash/hash_perfeito_saida.cpp
+	hash/funcao_hash/funcao_hash.cpp \
+	saida_programa/saida.cpp \
+	hash/encadeamento_explicito_hash/encadeamento_explicito.cpp \
+	hash/encadeamento_explicito_hash/encadeamento_explicito_saida.cpp \
+	hash/duplo_hash/duplo_hash.cpp \
+	hash/duplo_hash/duplo_hash_saida.cpp \
+	hash/sondagem_linear_hash/sondagem_linear.cpp \
+	hash/sondagem_linear_hash/sondagem_linear_saida.cpp \
+	hash/perfeito_hash/hash_perfeito.cpp \
+	hash/perfeito_hash/hash_perfeito_saida.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 ENTRY_GENERATOR_SOURCES=criadorDeEntradas.cpp
 ENTRY_GENERATOR_OBJECTS=$(ENTRY_GENERATOR_SOURCES:.cpp=.o)
@@ -42,5 +43,5 @@ create-input:
 run:
 	./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
 run-especial:
-	./criadorDeEntradas 101 100
-	./$(EXECUTABLE) <$(ENTRY_FILE) >saida10.txt
+	./criadorDeEntradas 11 9
+	./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
