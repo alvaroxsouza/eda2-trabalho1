@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#include "../funcao_hash/funcao_hash.hpp"
+
 using namespace std;
 
 namespace hash_perfeito_class {

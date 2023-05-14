@@ -2,8 +2,10 @@
 #define HASH_SONDAGEM_LINEAR_HPP
 
 #include <vector>
+#include "../funcao_hash/funcao_hash.hpp"
 
 using namespace std;
+using namespace hash_funcao_class;
 
 namespace sondagem_linear_hash_class {
     class sondagem_linear_hash {

@@ -8,9 +8,9 @@ using namespace std;
 using namespace sondagem_linear_hash_class;
 
 // Função de hash 1 (h1 = Chave mod Número de registros)
-int hash_linear_probing1(int chave, int tamanho_arquivo) {
-    return chave % tamanho_arquivo;
-}
+// int hash_linear_probing1(int chave, int tamanho_arquivo) {
+//     return chave % tamanho_arquivo;
+// }
 
 // Função para inserção das chaves usando hashing com encadeamento linear
 void sondagem_linear_hash::insere_sondagem_linear(
@@ -23,7 +23,7 @@ void sondagem_linear_hash::insere_sondagem_linear(
     if(total_chaves_inseridas_sondagem < tamanho_arquivo) {
         if(chave == 0) return; //se chave for 0, saia do loop
 
-        long int h1 = hash_linear_probing1(chave, tamanho_arquivo); // chamada para calcular o h1
+        long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo); // chamada para calcular o h1
 
         if (tabela_hash[h1] == -1) { // caso em que, usando h1, a posição calculada está disponível
             tabela_hash[h1] = chave; // chave inserida 

@@ -2,9 +2,11 @@
 #define HASH_ENCADEAMENTO_EXPLICITO_HPP
 
 #include "../../node/node.hpp"
+#include "../funcao_hash/funcao_hash.hpp"
 
 using namespace std;
 using namespace node_class;
+using namespace hash_funcao_class;
 
 namespace hash_encadeamento_explicito_class {
     class hash_encadeamento_explicito

@@ -3,8 +3,10 @@
 
 #include <cmath>
 #include <vector>
+#include "../funcao_hash/funcao_hash.hpp"
 
 using namespace std;
+using namespace hash_funcao_class;
 
 namespace hash_duplo_class {
     class hash_duplo {

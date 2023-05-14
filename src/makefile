@@ -4,6 +4,7 @@ LDFLAGS=
 SOURCES= \
 	main.cpp \
 	node/node.cpp \
+	Hash/funcao_hash/funcao_hash.cpp \
 	Hash/encadeamento_explicito_hash/encadeamento_explicito.cpp \
 	Hash/encadeamento_explicito_hash/encadeamento_explicito_saida.cpp \
 	Hash/duplo_hash/duplo_hash.cpp \

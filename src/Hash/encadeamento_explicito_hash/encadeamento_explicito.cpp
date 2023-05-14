@@ -5,15 +5,15 @@
 
 using namespace hash_encadeamento_explicito_class;
 
-int funcao_hash_h1(long int valor_node,
-    long int tamanho_arquivo) {
-    return valor_node % tamanho_arquivo;
-}
+// int funcao_hash_h1(long int valor_node,
+//     long int tamanho_arquivo) {
+//     return valor_node % tamanho_arquivo;
+// }
 
 int busca_posicao_inicial(node *arquivo,
     long int valor_node,
     long int tamanho_arquivo) {
-    int posicao_inicial = funcao_hash_h1(valor_node, tamanho_arquivo);
+    int posicao_inicial = hash_funcao::funcao_hash_h1(valor_node, tamanho_arquivo);
     return posicao_inicial;
 }
 

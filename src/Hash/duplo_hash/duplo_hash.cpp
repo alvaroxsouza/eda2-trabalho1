@@ -7,21 +7,21 @@
 using namespace hash_duplo_class;
 
 // Função de hash 1 (h1 = Chave mod Número de registros)
-long int hashDouble1(long int chave, long int tamanho_arquivo) {
-    return chave % tamanho_arquivo;
-}
+// long int hashDouble1(long int chave, long int tamanho_arquivo) {
+//     return chave % tamanho_arquivo;
+// }
 
 /*Função de hash 2 (h2 = 1, se a chave for menor que o número de registros e h2 = chão da divisão entre Chave e número de registros
 nos demais casos)*/
-long int hashDouble2(long int chave, long int tamanho_arquivo) {
-    if(chave < tamanho_arquivo){ 
-        chave = 1;
-    }
-    if (chave >= tamanho_arquivo){
-        chave = floor (chave / tamanho_arquivo);
-    }
-    return chave;
-}
+// long int hashDouble2(long int chave, long int tamanho_arquivo) {
+//     if(chave < tamanho_arquivo){ 
+//         chave = 1;
+//     }
+//     if (chave >= tamanho_arquivo){
+//         chave = floor (chave / tamanho_arquivo);
+//     }
+//     return chave;
+// }
 
 // Função de criação da tabela hash
 vector<long int> criar_tabela_hash_double(long int tamanho_arquivo) {
@@ -40,8 +40,8 @@ void hash_duplo::insere_duplo_hash(
 
     if(chave == 0) return; //se chave for 0, saia do loop
 
-    long int h1 = hashDouble1(chave, tamanho_arquivo); // chamada para calcular o h1
-    long int h2 = hashDouble2(chave, tamanho_arquivo); // chamada para calcular o h2
+    long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo); // chamada para calcular o h1
+    long int h2 = hash_funcao::funcao_hash_h2(chave, tamanho_arquivo); // chamada para calcular o h2
 
     if (tabela_hash[h1] == -1) { // caso em que, usando h1, a posição calculada está disponível
         tabela_hash[h1] = chave; // chave inserida 
