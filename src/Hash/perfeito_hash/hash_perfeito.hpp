@@ -1,5 +1,5 @@
-#ifndef HASH_PERFECT_HPP
-#define HASH_PERFECT_HPP
+#ifndef HASH_PERFEITO_HPP
+#define HASH_PERFEITO_HPP
 
 #include <iostream>
 #include <vector>
@@ -8,25 +8,25 @@
 
 using namespace std;
 
-namespace HashPerfectClass {
-    class HashPerfect {
+namespace hash_perfeito_class {
+    class hash_perfeito {
         private:
         /* data */
         public:
-            static void insertPerfectHash(
+            static void insere_perfeito_hash(
                 vector<vector<long int>>& nivel_um,
                 vector<vector<long int>>& nivel_dois,
                 vector<long int>& chaves,
-                long int quantidade_de_registros,
+                long int tamanho_arquivo,
                 int a, int b,
-                long int& total_acessos,
-                long int& total_chaves_inseridas
+                long int& total_chaves_inseridas_perfeito,
+                long int& quantidade_acessos_total_perfeito
                 );
                 
-            static void saidaPefectHash(
+            static void saida_perfeito_hash(
                 vector<vector<long int>>& nivel_um,
                 vector<vector<long int>>& nivel_dois,
-                long int quantidade_de_registros
+                long int tamanho_arquivo
                 );
     };
 }

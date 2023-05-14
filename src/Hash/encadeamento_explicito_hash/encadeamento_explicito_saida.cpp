@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <iomanip>
-#include "hashEncadeamentoExplicito.hpp"
+#include "encadeamento_explicito.hpp"
 
 using namespace std;
-using namespace HashEncadeamentoExplicitoClass;
+using namespace hash_encadeamento_explicito_class;
 
-void HashEncadeamentoExplicito::saidaEncadeamentoExplicitoHash(Node* arquivo,
-    long int tamanhoDoArquivo) {
+void hash_encadeamento_explicito::saida_encadeamento_explicito(node* arquivo,
+    long int tamanho_arquivo) {
     cout << "######################################################################" << endl;
     cout << "#################### Encadeamento explícito com ######################" << endl;
     cout << "######################## Alocação estática ###########################" << endl;
@@ -20,16 +20,16 @@ void HashEncadeamentoExplicito::saidaEncadeamentoExplicitoHash(Node* arquivo,
     cout << "| " << left << setw(10) << "Reg" << " | " << setw(25) << "Valor" << " | " << setw(25) << "Ponteiro" << " |" << endl;
     cout << "----------------------------------------------------------------------" << endl;
 
-    for(long int i = 0; i < tamanhoDoArquivo; i++) {
+    for(long int i = 0; i < tamanho_arquivo; i++) {
         cout << "| " << left << setw(10) << i << " | ";
-        if (!arquivo[i].isEstaOcupado()) {
+        if (!arquivo[i].is_esta_ocupado()) {
             cout << left << setw(25) << "-" << " | " << setw(25) << "-" << endl;
         }
         else {
-            if(arquivo[i].getProximoNode() <= 0) {
-                cout << left << setw(25) << arquivo[i].getValorDoNode() << " | " << setw(25) << "Ponteiro Próx: " << "-" << endl;
+            if(arquivo[i].get_proximo_node() <= 0) {
+                cout << left << setw(25) << arquivo[i].get_valor_node() << " | " << setw(25) << "Ponteiro Próx: " << "-" << endl;
             } else {
-                cout << left << setw(25) << arquivo[i].getValorDoNode() << " | " << setw(25) << "Ponteiro Próx: " << arquivo[i].getProximoNode() << endl;
+                cout << left << setw(25) << arquivo[i].get_valor_node() << " | " << setw(25) << "Ponteiro Próx: " << arquivo[i].get_proximo_node() << endl;
             }
         }
     }

@@ -1,15 +1,15 @@
-#ifndef HASH_LINEAR_PROBING_SAIDA_CPP
-#define HASH_LINEAR_PROBING_SAIDA_CPP
+#ifndef HASH_SONDAGEM_LINEAR_SAIDA_CPP
+#define HASH_SONDAGEM_LINEAR_SAIDA_CPP
 
 #include <iostream>
 #include <iomanip>
-#include "hashLinearProbing.hpp"
+#include "sondagem_linear.hpp"
 
 using namespace std;
-using namespace HashLinearProbingClass;
+using namespace sondagem_linear_hash_class;
 
-void HashLinearProbing::saidaLinearProbingHash(vector<long int>& tabela_hash,
-    long int quantidade_de_registros) {
+void sondagem_linear_hash::saida_sondagem_linear(vector<long int>& tabela_hash,
+    long int tamanho_arquivo) {
     cout << "######################################################" << endl;
     cout << "################## Sondagem Linear ###################" << endl;
     cout << "######################################################" << endl;
@@ -21,7 +21,7 @@ void HashLinearProbing::saidaLinearProbingHash(vector<long int>& tabela_hash,
     cout << "| " << left << setw(10) << "Registro" << " | " << setw(15) << "Valor" << " |" << endl;
     cout << "------------------------------------------------------" << endl;
 
-    for(long int i = 0; i < quantidade_de_registros; i++) {
+    for(long int i = 0; i < tamanho_arquivo; i++) {
         cout << "| " << left << setw(10) << i << " | ";
         if (tabela_hash[i] == -1) {
             cout << left << setw(15) << "-" << " |" << endl;

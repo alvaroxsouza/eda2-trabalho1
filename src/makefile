@@ -1,7 +1,17 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=Node/node.cpp Hash/hashEncadeamentoExplicito.cpp Hash/hashEncadeamentoExplicitoSaida.cpp Hash/hashDouble.cpp Hash/hashDoubleSaida.cpp Hash/hashLinearProbing.cpp Hash/hashLinearProbingSaida.cpp Hash/hashPerfect.cpp Hash/hashPerfectSaida.cpp main.cpp
+SOURCES= \
+	main.cpp \
+	node/node.cpp \
+	Hash/encadeamento_explicito_hash/encadeamento_explicito.cpp \
+	Hash/encadeamento_explicito_hash/encadeamento_explicito_saida.cpp \
+	Hash/duplo_hash/duplo_hash.cpp \
+	Hash/duplo_hash/duplo_hash_saida.cpp \
+	Hash/sondagem_linear_hash/sondagem_linear.cpp \
+	Hash/sondagem_linear_hash/sondagem_linear_saida.cpp \
+	Hash/perfeito_hash/hash_perfeito.cpp \
+	Hash/perfeito_hash/hash_perfeito_saida.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 ENTRY_GENERATOR_SOURCES=criadorDeEntradas.cpp
 ENTRY_GENERATOR_OBJECTS=$(ENTRY_GENERATOR_SOURCES:.cpp=.o)
@@ -29,7 +39,7 @@ create-input:
 	./criadorDeEntradas 101 100
 
 run:
-	./$(EXECUTABLE) <$(ENTRY_FILE) >saida10.txt
+	./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
 run-especial:
 	./criadorDeEntradas 101 100
 	./$(EXECUTABLE) <$(ENTRY_FILE) >saida10.txt
