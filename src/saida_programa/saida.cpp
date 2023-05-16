@@ -31,6 +31,12 @@ void saida::estatisticas_perfeito_hash(long int quantidade_acessos_total_perfeit
     cout << fixed << setprecision(1) << "Media de acessos: " << media_acessos_perfeito << endl;
 }
 
+/* 
+* Função de saída das informações do programa como:
+* Tamanho do arquivo e quantidade de chaves que foram inseridas
+* Quantidade de acessos para cada método de Hash
+* Média dos acessos para cada método de Hash
+*/
 void saida::saida_informacoes_gerais_estatisticas(
     long int tamanho_arquivo,long int quantidade_chaves,
     long int quantidade_acessos_total_HEEAE, double media_acessos_HEEAE,

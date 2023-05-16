@@ -8,6 +8,23 @@
 using namespace std;
 using namespace hash_encadeamento_explicito_class;
 
+/**
+ * Função para exibir a saída do encadeamento explícito com alocação estática.
+ *
+ * A função recebe um ponteiro para um array de nós (arquivo) e o tamanho da tabela hash.
+ * 
+ * Parâmetros:
+ *   - arquivo: ponteiro para o array de nós que representa a tabela hash.
+ *   - tamanho_arquivo: tamanho do arquivo/tabela hash.
+ *
+ * A função imprime na saída padrão a tabela de registros do encadeamento explícito com alocação estática.
+ * A tabela é formatada com colunas para o índice do registro, o valor armazenado no nó e o ponteiro para o próximo nó.
+ * Caso um registro não esteja ocupado, os campos de valor e ponteiro serão exibidos como "-" para indicar vazio.
+ * Caso o ponteiro para o próximo nó seja menor ou igual a zero, será exibido "-" para indicar que não há próximo nó.
+ *
+ * A formatação da tabela inclui uma linha de cabeçalho, separadores de coluna e linhas para cada registro.
+ * Após exibir a tabela, são apresentadas linhas de separação e uma mensagem de finalização.
+ */
 void hash_encadeamento_explicito::saida_encadeamento_explicito(node* arquivo,
     long int tamanho_arquivo) {
     cout << "######################################################################" << endl;

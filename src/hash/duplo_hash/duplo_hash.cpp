@@ -6,31 +6,32 @@
 
 using namespace hash_duplo_class;
 
-// Função de hash 1 (h1 = Chave mod Número de registros)
-// long int hashDouble1(long int chave, long int tamanho_arquivo) {
-//     return chave % tamanho_arquivo;
-// }
 
-/*Função de hash 2 (h2 = 1, se a chave for menor que o número de registros e h2 = chão da divisão entre Chave e número de registros
-nos demais casos)*/
-// long int hashDouble2(long int chave, long int tamanho_arquivo) {
-//     if(chave < tamanho_arquivo){ 
-//         chave = 1;
-//     }
-//     if (chave >= tamanho_arquivo){
-//         chave = floor (chave / tamanho_arquivo);
-//     }
-//     return chave;
-// }
-
-// Função de criação da tabela hash
-vector<long int> criar_tabela_hash_double(long int tamanho_arquivo) {
-    long int posicao_vazia = -1;
-    vector<long int> tabela_hash(tamanho_arquivo, posicao_vazia);
-    return tabela_hash;
-}
-
-// Função para inserção das chaves usando hashing duplo
+/** 
+ * Função para inserir uma chave usando o método de hashing duplo.
+ * 
+ * A função recebe uma tabela hash, uma chave, o tamanho do arquivo, 
+ * o total de chaves inseridas usando hashing duplo e a quantidade de acessos 
+ * totais realizados durante a inserção.
+ * 
+ * Parâmetros:
+ *   - tabela_hash: vetor contendo a tabela hash.
+ *   - chave: chave a ser inserida na tabela hash.
+ *   - tamanho_arquivo: tamanho do arquivo/tabela hash.
+ *   - total_chaves_inseridas_duplo: referência para a variável que guarda o total de chaves inseridas.
+ *   - quantidade_acessos_total_duplo: referência para a variável que guarda a quantidade de acessos totais.
+ * 
+ * A função utiliza duas funções de hash (funcao_hash_h1 e funcao_hash_h2) para calcular as posições iniciais h1 e h2.
+ * 
+ * Se a posição h1 da tabela hash estiver vazia, a chave é inserida diretamente nessa posição.
+ * Caso contrário, a função utiliza o método de sondagem dupla para encontrar uma posição vazia na tabela.
+ * A cada iteração, é calculada uma nova posição usando a fórmula (h1 + i*h2) % tamanho_arquivo, onde i é um contador.
+ * O processo continua até encontrar uma posição vazia ou até percorrer toda a tabela (controle >= tamanho_arquivo).
+ * 
+ * Após encontrar uma posição vazia, a chave é inserida nessa posição e as variáveis de contagem são atualizadas.
+ * 
+ * Observação: A função assume que a tabela_hash está inicializada com -1 em todas as posições vazias.
+ */
 void hash_duplo::insere_duplo_hash(
     vector<long int>& tabela_hash,
     long int chave,
@@ -38,29 +39,31 @@ void hash_duplo::insere_duplo_hash(
     long int& total_chaves_inseridas_duplo,
     long int& quantidade_acessos_total_duplo) {
 
-    if(chave == 0) return; //se chave for 0, saia do loop
+    int controle = 0;
+    if(chave == 0) return;
 
-    long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo); // chamada para calcular o h1
-    long int h2 = hash_funcao::funcao_hash_h2(chave, tamanho_arquivo); // chamada para calcular o h2
+    long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo);
+    long int h2 = hash_funcao::funcao_hash_h2(chave, tamanho_arquivo);
 
-    if (tabela_hash[h1] == -1) { // caso em que, usando h1, a posição calculada está disponível
-        tabela_hash[h1] = chave; // chave inserida 
-        total_chaves_inseridas_duplo++; // incrementa o total de chaves inseridas
-        quantidade_acessos_total_duplo++; // incrementa o total de acessos
-    } else { // caso em que, usando h1, a posição calculada está ocupada
+    if (tabela_hash[h1] == -1) {
+        tabela_hash[h1] = chave;
+        total_chaves_inseridas_duplo++;
+        quantidade_acessos_total_duplo++;
+    } else {
         long int i = 1;
-        long int nova_posicao = (h1 + i*h2) % tamanho_arquivo; // calcula a nova posição usando o h2 
-        quantidade_acessos_total_duplo++; // incrementa o total de acessos
+        controle++;
+        long int nova_posicao = (h1 + i*h2) % tamanho_arquivo;
+        quantidade_acessos_total_duplo++;
 
-        while(tabela_hash[nova_posicao] != -1) { /* o programa continua até que encontre uma posição que esteja disponível, 
-                                            atualizando a posição e o número de acessos que vão sendo feitos*/
+        while(tabela_hash[nova_posicao] != -1 && controle < tamanho_arquivo) {
             i++;
-            nova_posicao = (h1 + i*h2) % tamanho_arquivo; // calcula a nova posição usando o h2
-            quantidade_acessos_total_duplo++; // incrementa o total de acessos
+            nova_posicao = (h1 + i*h2) % tamanho_arquivo;
+            quantidade_acessos_total_duplo++;
+            controle++;
         }
-        tabela_hash[nova_posicao] = chave; // chave inserida
-        total_chaves_inseridas_duplo++; // incrementa o total de chaves inseridas
-        quantidade_acessos_total_duplo++; // incrementa o total de acessos
+        tabela_hash[nova_posicao] = chave;
+        total_chaves_inseridas_duplo++;
+        quantidade_acessos_total_duplo++;
     }
 }
 

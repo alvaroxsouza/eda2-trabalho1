@@ -5,6 +5,11 @@
 
 using namespace node_class;
 
+/* 
+* Arquivo de implementação do Node, como um registro, usado no método de 
+* Hash com Encademento Explícito com Alocação Estática
+*/
+
 node::node() {
     this->valor_node = 0;
     this->proximo_node = -1;

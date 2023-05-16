@@ -8,6 +8,23 @@
 using namespace std;
 using namespace hash_perfeito_class;
 
+/**
+ * Função para imprimir o nível um da tabela de registros do hashing perfeito.
+ *
+ * A função recebe uma referência para um vetor de vetores (nivel_um) e o tamanho da tabela hash.
+ * 
+ * Parâmetros:
+ *   - nivel_um: referência para o vetor de vetores do nível um.
+ *   - tamanho_arquivo: tamanho da tabela hash.
+ *
+ * A função imprime na saída padrão o nível um da tabela de registros do hashing perfeito.
+ * O nível um contém os registros principais, cada um associado a um conjunto de chaves.
+ * Cada registro principal é exibido, seguido das suas chaves entre colchetes.
+ * A formatação inclui cabeçalho, separadores de coluna e linha para cada registro.
+ *
+ * A função verifica se há chaves associadas a cada registro principal antes de imprimir.
+ * Caso não haja chaves, um hífen é exibido para indicar a ausência.
+ */
 void imprime_nivel_um(vector<vector<long int>>& nivel_um, long int tamanho_arquivo) {
     cout << "###########################################################" << endl;
     cout << "################### Nível um - principal ##################" << endl;
@@ -29,6 +46,24 @@ void imprime_nivel_um(vector<vector<long int>>& nivel_um, long int tamanho_arqui
     cout << "-----------------------------------------------------------" << endl;
 }
 
+/**
+ * Função para imprimir o nível dois da tabela de registros do hashing perfeito.
+ *
+ * A função recebe duas referências para vetores de vetores (nivel_um e nivel_dois) e o tamanho da tabela hash.
+ * 
+ * Parâmetros:
+ *   - nivel_um: referência para o vetor de vetores do nível um.
+ *   - nivel_dois: referência para o vetor de vetores do nível dois.
+ *   - tamanho_arquivo: tamanho da tabela hash.
+ *
+ * A função imprime na saída padrão o nível dois da tabela de registros do hashing perfeito.
+ * O nível dois contém os índices secundários associados aos índices principais do nível um.
+ * Cada índice principal é exibido como um registro, seguido pelos seus índices secundários e seus respectivos valores.
+ * A formatação inclui cabeçalho, separadores de coluna e linhas para cada índice secundário.
+ *
+ * A função também verifica se há registros no nível dois antes de imprimir.
+ * Caso não haja registros, uma mensagem informando a ausência de registros é exibida.
+ */
 void imprime_nivel_dois(
     vector<vector<long int>>& nivel_um,
     vector<vector<long int>>& nivel_dois,
@@ -63,6 +98,25 @@ void imprime_nivel_dois(
     }
 }
 
+/**
+ * Função para exibir a saída do hashing perfeito.
+ *
+ * A função recebe duas referências para vetores de vetores (nivel_um e nivel_dois) e o tamanho da tabela hash.
+ * 
+ * Parâmetros:
+ *   - nivel_um: referência para o vetor de vetores do nível um.
+ *   - nivel_dois: referência para o vetor de vetores do nível dois.
+ *   - tamanho_arquivo: tamanho da tabela hash.
+ *
+ * A função imprime na saída padrão a tabela de registros do hashing perfeito.
+ * A tabela é dividida em dois níveis: nível um e nível dois.
+ * Primeiro, é impresso o nível um, que contém os índices principais da tabela hash.
+ * Em seguida, é impresso o nível dois, que contém os índices secundários associados aos índices principais.
+ * Cada nível é formatado com colunas para o índice do registro e os valores dos índices correspondentes.
+ *
+ * A formatação da tabela inclui linhas de cabeçalho, separadores e linhas para cada registro.
+ * Após exibir a tabela, são apresentadas linhas de separação e uma mensagem de finalização.
+ */
 void hash_perfeito::saida_perfeito_hash(
     vector<vector<long int>>& nivel_um,
     vector<vector<long int>>& nivel_dois,

@@ -7,6 +7,10 @@
 
 using namespace std;
 
+/* 
+* Arquivo de declaração das funções de saída
+*/
+
 namespace saida_class {
     class saida {
         private:

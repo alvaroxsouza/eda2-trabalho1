@@ -8,6 +8,11 @@
 using namespace std;
 using namespace hash_duplo_class;
 
+
+/* 
+* Função de saída para o Duplo Hash, fazendo com que a saída fique organizada
+* em forma de tabela.
+*/
 void hash_duplo::saida_duplo_hash(vector<long int>& tabela_hash, long int tamanho_arquivo) {
     cout << "######################################################" << endl;
     cout << "################### Hashing Duplo ####################" << endl;

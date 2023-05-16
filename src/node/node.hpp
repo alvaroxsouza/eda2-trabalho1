@@ -2,6 +2,11 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
+/* 
+* Arquivo de declaração do Node, como um registro, usado no método de 
+* Hash com Encademento Explícito com Alocação Estática
+*/
+
 namespace node_class {
     class node {
         private:
