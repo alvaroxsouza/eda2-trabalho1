@@ -38,32 +38,33 @@ void hash_duplo::insere_duplo_hash(
     long int tamanho_arquivo,
     long int& total_chaves_inseridas_duplo,
     long int& quantidade_acessos_total_duplo) {
+    
+    if(total_chaves_inseridas_duplo < tamanho_arquivo) {
+        if(chave == 0) return;
 
-    int controle = 0;
-    if(chave == 0) return;
+        long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo);
+        long int h2 = hash_funcao::funcao_hash_h2(chave, tamanho_arquivo);
 
-    long int h1 = hash_funcao::funcao_hash_h1(chave, tamanho_arquivo);
-    long int h2 = hash_funcao::funcao_hash_h2(chave, tamanho_arquivo);
-
-    if (tabela_hash[h1] == -1) {
-        tabela_hash[h1] = chave;
-        total_chaves_inseridas_duplo++;
-        quantidade_acessos_total_duplo++;
-    } else {
-        long int i = 1;
-        controle++;
-        long int nova_posicao = (h1 + i*h2) % tamanho_arquivo;
-        quantidade_acessos_total_duplo++;
-
-        while(tabela_hash[nova_posicao] != -1 && controle < tamanho_arquivo) {
-            i++;
-            nova_posicao = (h1 + i*h2) % tamanho_arquivo;
+        if (tabela_hash[h1] == -1) {
+            tabela_hash[h1] = chave;
+            total_chaves_inseridas_duplo++;
             quantidade_acessos_total_duplo++;
-            controle++;
+        } else {
+            long int i = 1;
+            long int nova_posicao = (h1 + i*h2) % tamanho_arquivo;
+            quantidade_acessos_total_duplo++;
+
+            while(tabela_hash[nova_posicao] != -1) {
+                i++;
+                nova_posicao = (h1 + i*h2) % tamanho_arquivo;
+                quantidade_acessos_total_duplo++;
+            }
+            tabela_hash[nova_posicao] = chave;
+            total_chaves_inseridas_duplo++;
+            quantidade_acessos_total_duplo++;
         }
-        tabela_hash[nova_posicao] = chave;
-        total_chaves_inseridas_duplo++;
-        quantidade_acessos_total_duplo++;
+    } else {
+        return;
     }
 }
 

@@ -123,35 +123,40 @@ void hash_encadeamento_explicito::insercao_encadeamento_explicito(node* arquivo,
     long int& posicao_ponteiro_encadeamento_explicito,
     long int& total_chaves_inseridas_HEEAE, 
     long int& quantidade_acessos_total_HEEAE) {
-    long int posicao_inicial_insercao_arquivo =
-        busca_posicao_inicial(arquivo, valor_node, tamanho_arquivo);
-
-    if (!arquivo[posicao_inicial_insercao_arquivo].is_esta_ocupado())
-    {
-        arquivo[posicao_inicial_insercao_arquivo].set_valor_node(valor_node);
-        arquivo[posicao_inicial_insercao_arquivo].set_esta_ocupado(true);
-        quantidade_acessos_total_HEEAE++;
-        total_chaves_inseridas_HEEAE++;
-    } else {
-        long int posicao_atual_tabela = 
-            encontrar_ultimo_node_livre_lista_encadeada(arquivo,
-                posicao_ponteiro_encadeamento_explicito,
-                quantidade_acessos_total_HEEAE,
-                posicao_inicial_insercao_arquivo);
     
-        encontrar_primeiro_registro_livre(arquivo, 
-            posicao_ponteiro_encadeamento_explicito,
-            quantidade_acessos_total_HEEAE
-            );
-
-        if (posicao_ponteiro_encadeamento_explicito >= 0) {
-            arquivo[posicao_atual_tabela].set_proximo_node(posicao_ponteiro_encadeamento_explicito);
-            arquivo[posicao_ponteiro_encadeamento_explicito].set_valor_node(valor_node);
-            arquivo[posicao_ponteiro_encadeamento_explicito].set_esta_ocupado(true);
-            total_chaves_inseridas_HEEAE++;
+    if(total_chaves_inseridas_HEEAE < tamanho_arquivo) {
+        long int posicao_inicial_insercao_arquivo =
+        busca_posicao_inicial(arquivo, valor_node, tamanho_arquivo);
+        if (!arquivo[posicao_inicial_insercao_arquivo].is_esta_ocupado())
+        {
+            arquivo[posicao_inicial_insercao_arquivo].set_valor_node(valor_node);
+            arquivo[posicao_inicial_insercao_arquivo].set_esta_ocupado(true);
             quantidade_acessos_total_HEEAE++;
+            total_chaves_inseridas_HEEAE++;
+        } else {
+            long int posicao_atual_tabela = 
+                encontrar_ultimo_node_livre_lista_encadeada(arquivo,
+                    posicao_ponteiro_encadeamento_explicito,
+                    quantidade_acessos_total_HEEAE,
+                    posicao_inicial_insercao_arquivo);
+        
+            encontrar_primeiro_registro_livre(arquivo, 
+                posicao_ponteiro_encadeamento_explicito,
+                quantidade_acessos_total_HEEAE
+                );
+
+            if (posicao_ponteiro_encadeamento_explicito >= 0) {
+                arquivo[posicao_atual_tabela].set_proximo_node(posicao_ponteiro_encadeamento_explicito);
+                arquivo[posicao_ponteiro_encadeamento_explicito].set_valor_node(valor_node);
+                arquivo[posicao_ponteiro_encadeamento_explicito].set_esta_ocupado(true);
+                total_chaves_inseridas_HEEAE++;
+                quantidade_acessos_total_HEEAE++;
+            }
         }
+    } else {
+        return;
     }
+    
 }
 
 #endif

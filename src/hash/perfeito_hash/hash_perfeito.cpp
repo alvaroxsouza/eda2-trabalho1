@@ -48,37 +48,41 @@ void hash_perfeito::insere_perfeito_hash(vector<vector<long int>>& nivel_um,
                 int a, int b,
                 long int& total_chaves_inseridas_perfeito,
                 long int& quantidade_acessos_total_perfeito) {
-
-    for (unsigned long int i = 0; i < chaves.size(); i++) {
-        long int h = ((a * chaves[i] + b) % 101) % tamanho_arquivo;
-        nivel_um[h].resize(nivel_um[h].size() + 1, chaves[i]);
-        quantidade_acessos_total_perfeito++;
-        total_chaves_inseridas_perfeito++;
-    }
-
-    for (long int i = 0; i < tamanho_arquivo; i++) {
-        long int n = nivel_um[i].size();
-        if (n == 1) {
-            long int h = ((a * nivel_um[i][0] + b) % 101) % tamanho_arquivo;
-            nivel_dois[h].resize(1, nivel_um[i][0]);
+    
+    if(total_chaves_inseridas_perfeito < tamanho_arquivo) {
+        for (unsigned long int i = 0; i < chaves.size(); i++) {
+            long int h = ((a * chaves[i] + b) % 101) % tamanho_arquivo;
+            nivel_um[h].resize(nivel_um[h].size() + 1, chaves[i]);
             quantidade_acessos_total_perfeito++;
-        } else if (n > 1) {
-            nivel_dois[i].resize(n * n);
-            for (long int j = 0; j < n; j++) {
-                long int h = ((a * nivel_um[i][j] + b) % 101) % (n * n);
-                if (nivel_dois[i][h] == 0) {
-                    nivel_dois[i][h] = nivel_um[i][j];
-                    quantidade_acessos_total_perfeito++;
-                } else {
-                    long int k = h;
-                    do {
-                        k = (k + 1) % (n * n);
+            total_chaves_inseridas_perfeito++;
+        }
+
+        for (long int i = 0; i < tamanho_arquivo; i++) {
+            long int n = nivel_um[i].size();
+            if (n == 1) {
+                long int h = ((a * nivel_um[i][0] + b) % 101) % tamanho_arquivo;
+                nivel_dois[h].resize(1, nivel_um[i][0]);
+                quantidade_acessos_total_perfeito++;
+            } else if (n > 1) {
+                nivel_dois[i].resize(n * n);
+                for (long int j = 0; j < n; j++) {
+                    long int h = ((a * nivel_um[i][j] + b) % 101) % (n * n);
+                    if (nivel_dois[i][h] == 0) {
+                        nivel_dois[i][h] = nivel_um[i][j];
                         quantidade_acessos_total_perfeito++;
-                    } while (nivel_dois[i][k] != 0); 
-                    nivel_dois[i][k] = nivel_um[i][j];
+                    } else {
+                        long int k = h;
+                        do {
+                            k = (k + 1) % (n * n);
+                            quantidade_acessos_total_perfeito++;
+                        } while (nivel_dois[i][k] != 0); 
+                        nivel_dois[i][k] = nivel_um[i][j];
+                    }
                 }
             }
         }
+    } else {
+        return;
     }
 }
 

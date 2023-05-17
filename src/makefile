@@ -34,9 +34,6 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	rm -rf $(OBJECTS) $(EXECUTABLE) criadorDeEntradas
 
-run-valgrind: $(ENTRY_FILE) $(EXECUTABLE)
-	valgrind --leak-check=full ./$(EXECUTABLE) <$(ENTRY_FILE) >saida.txt
-
 create-input:
 	./criadorDeEntradas 101 100
 
